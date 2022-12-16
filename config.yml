@@ -2,7 +2,7 @@ baseURL: "http://localhost:1313/" # if your site is in 'https', then make sure y
 # todo: update the base url of the website above
 title: Tanmay's Blog
 paginate: 5
-theme: PaperMod
+theme: hugo-PaperMod
 
 enableInlineShortcodes: true
 enableRobotsTXT: true
