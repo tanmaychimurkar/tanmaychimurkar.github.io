@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Docker on Tanmay&#39;s Blog</title>
+    <link>http://localhost:1313/categories/docker/</link>
+    <description>Recent content in Docker on Tanmay&#39;s Blog</description>
+    <image>
+      <url>http://localhost:1313/papermod-cover.png</url>
+      <link>http://localhost:1313/papermod-cover.png</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 10 Aug 2022 04:17:32 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/docker/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The basics of Docker to get started</title>
+      <link>http://localhost:1313/posts/docker/docker_intro/</link>
+      <pubDate>Wed, 10 Aug 2022 04:17:32 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/docker/docker_intro/</guid>
+      <description>This post goes over the basic concepts of Docker, and why we might want to use it for our software!</description>
+    </item>
+    
+  </channel>
+</rss>

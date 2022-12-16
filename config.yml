@@ -1,0 +1,127 @@
+baseURL: "http://localhost:1313/" # if your site is in 'https', then make sure your base url isn't written using 'http' otherwise your sitemap would contain http (as opposeed to https) URLs. This would affect Google indexing of your URLs.
+# todo: update the base url of the website above
+title: Tanmay's Blog
+paginate: 5
+theme: PaperMod
+
+enableInlineShortcodes: true
+enableRobotsTXT: true
+buildDrafts: false
+buildFuture: false
+buildExpired: false
+enableEmoji: true
+pygmentsUseClasses: true
+
+minify:
+    disableXML: true
+    # minifyOutput: true
+
+languages:
+    en:
+        languageName: "English"
+        weight: 1
+        taxonomies:
+          category: categories
+          tag: tags
+          series: series
+        menu:
+            main:
+                - name: Archive
+                  url: archives
+                  weight: 5
+                - name: Categories
+                  url: categories
+                  weight: 10
+                - name: Tags
+                  url: tags/
+                  weight: 11
+                - name: Search
+                  url: search/
+                  weight: 12
+
+outputs:
+    home:
+        - HTML
+        - RSS
+        - JSON
+
+params:
+    env: production
+    description: "Theme PaperMod - https://github.com/adityatelange/hugo-PaperMod"
+    author: Me
+    # author: ["Me", "You"] # multiple authors
+
+    defaultTheme: dark
+    disableThemeToggle: false
+    ShowShareButtons: true
+    ShowReadingTime: true
+    # disableSpecial1stPost: true
+    displayFullLangName: true
+    ShowPostNavLinks: true
+    ShowBreadCrumbs: true
+    ShowCodeCopyButtons: true
+    ShowRssButtonInSectionTermList: true
+    ShowToc: true
+    ShowWordCount: false
+    # comments: false
+    images: ["papermod-cover.png"]
+
+    profileMode:
+        enabled: false
+
+    homeInfoParams:
+        Title: "Hello There 👋"
+        Content: >
+            I am Tanmay Chimurkar, a Machine Learning engineer.
+          
+            - generate description using OpenAI GPT 
+
+            - PaperMod is based on theme [Paper](https://github.com/nanxiaobei/hugo-paper).
+
+    socialIcons:
+        - name: github
+          url: "https://github.com/tanmaychimurkar"
+        - name: Linkedin
+          url: "https://www.linkedin.com/in/chimurkartanmay/"
+        - name: Medium
+          url: "https://medium.com/@chimurkar.tanmay"
+
+    editPost:
+        URL: "https://github.com/adityatelange/hugo-PaperMod/tree/exampleSite/content"
+        Text: "Suggest Changes" # edit text
+        appendFilePath: true # to append file path to Edit link
+    # todo: this might be applicable to all the blog pages, make sure to see how this config works
+
+    assets:
+        disableHLJS: true
+
+markup:
+    goldmark:
+        renderer:
+            unsafe: true
+    highlight:
+        noClasses: false
+
+privacy:
+    vimeo:
+        disabled: false
+        simple: true
+
+    twitter:
+        disabled: false
+        enableDNT: true
+        simple: true
+
+    instagram:
+        disabled: false
+        simple: true
+
+    youtube:
+        disabled: false
+        privacyEnhanced: true
+
+services:
+    instagram:
+        disableInlineCSS: true
+    twitter:
+        disableInlineCSS: true
