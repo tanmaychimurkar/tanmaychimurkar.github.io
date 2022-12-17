@@ -7,6 +7,7 @@ categories: ["Basics", "Docker"]
 author: "Tanmay"
 showToc: true
 TocOpen: true
+weight: 99
 cover:
     image: "https://miro.medium.com/max/1400/1*vb_5008Zbt_pHj7qx44p0Q.png"
     alt: Docker
