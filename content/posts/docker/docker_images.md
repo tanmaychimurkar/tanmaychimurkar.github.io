@@ -56,8 +56,9 @@ understand. I hope this also works the same for you🐈
 
 **Imp. Note🐳**: For getting our hands dirty here, it is advised to go through the installation of 
 [Docker Desktop](https://docs.docker.com/get-docker/). Personally, I like the 
-[Docker Engine](https://docs.docker.com/engine/install/ubuntu/) with the compose tool more, but to begin with, either 
-of the two installations should work fine.
+[Docker Engine](https://docs.docker.com/engine/install/ubuntu/) with the 
+[compose](https://docs.docker.com/compose/install/other/) tool more, but to begin with, either of the two installations 
+should work fine.
 
 With Docker installed on your system, let's verify the docker version. This can be done by opening a terminal and 
 typing:
