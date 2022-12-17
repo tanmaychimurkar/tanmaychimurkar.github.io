@@ -1,5 +1,4 @@
 baseURL: "https://tanmaychimurkar.github.io" # if your site is in 'https', then make sure your base url isn't written using 'http' otherwise your sitemap would contain http (as opposeed to https) URLs. This would affect Google indexing of your URLs.
-# todo: update the base url of the website above
 title: Tanmay's Blog
 paginate: 5
 theme: hugo-PaperMod
@@ -90,7 +89,6 @@ params:
         URL: "https://github.com/tanmaychimurkar/tanmaychimurkar.github.io/tree/main/content"
         Text: "Suggest Changes" # edit text
         appendFilePath: true # to append file path to Edit link
-    # todo: this might be applicable to all the blog pages, make sure to see how this config works
 
     assets:
         disableHLJS: true

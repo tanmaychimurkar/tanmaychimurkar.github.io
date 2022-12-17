@@ -54,7 +54,7 @@ Seeing that we have a command linked to a image on Docker Hub, naturally the nex
  helps me get out of my comfort zone, but also helps me bring a concept that I am trying to grasp much easier to 
 understand. I hope this also works the same for you🐈
 
-**Imp. Note**: For getting our hands dirty here, it is advised to go through the installation of 
+**Imp. Note🐳**: For getting our hands dirty here, it is advised to go through the installation of 
 [Docker Desktop](https://docs.docker.com/get-docker/). Personally, I like the 
 [Docker Engine](https://docs.docker.com/engine/install/ubuntu/) with the compose tool more, but to begin with, either 
 of the two installations should work fine.
@@ -134,3 +134,7 @@ each and every parameter works in order to get started. Instead, these are the m
 inside a `DockerFile` while building custom images.
 
 Let's now build our own Docker image by building a `DockerFile`🤩
+
+### Building a DockerFile
+
+# todo: add section here
