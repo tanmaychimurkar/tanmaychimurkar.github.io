@@ -11,21 +11,21 @@
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Thu, 11 Aug 2022 10:18:38 +0000</lastBuildDate><atom:link href="https://tanmaychimurkar.github.io/posts/docker/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Docker Images and DockerFile</title>
-      <link>https://tanmaychimurkar.github.io/posts/docker/docker_images/</link>
-      <pubDate>Thu, 11 Aug 2022 10:18:38 +0000</pubDate>
-      
-      <guid>https://tanmaychimurkar.github.io/posts/docker/docker_images/</guid>
-      <description>This post explores what are Docker Images and how to create one using a DockerFile</description>
-    </item>
-    
-    <item>
       <title>The basics of Docker to get started</title>
       <link>https://tanmaychimurkar.github.io/posts/docker/docker_intro/</link>
       <pubDate>Wed, 10 Aug 2022 04:17:32 +0000</pubDate>
       
       <guid>https://tanmaychimurkar.github.io/posts/docker/docker_intro/</guid>
       <description>This post goes over the basic concepts of Docker, and why we might want to use it for our software!</description>
+    </item>
+    
+    <item>
+      <title>Docker Images and DockerFile</title>
+      <link>https://tanmaychimurkar.github.io/posts/docker/docker_images/</link>
+      <pubDate>Thu, 11 Aug 2022 10:18:38 +0000</pubDate>
+      
+      <guid>https://tanmaychimurkar.github.io/posts/docker/docker_images/</guid>
+      <description>This post goes over what are DockerFiles and Docker Images</description>
     </item>
     
     <item>

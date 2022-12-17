@@ -2,10 +2,22 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://tanmaychimurkar.github.io/posts/docker/docker_intro/</loc>
+    <lastmod>2022-08-10T04:17:32+00:00</lastmod>
+  </url><url>
+    <loc>https://tanmaychimurkar.github.io/tags/basics/</loc>
+    <lastmod>2022-08-11T10:18:38+00:00</lastmod>
+  </url><url>
+    <loc>https://tanmaychimurkar.github.io/categories/basics/</loc>
+    <lastmod>2022-08-11T10:18:38+00:00</lastmod>
+  </url><url>
     <loc>https://tanmaychimurkar.github.io/categories/</loc>
     <lastmod>2022-08-11T10:18:38+00:00</lastmod>
   </url><url>
     <loc>https://tanmaychimurkar.github.io/tags/docker/</loc>
+    <lastmod>2022-08-11T10:18:38+00:00</lastmod>
+  </url><url>
+    <loc>https://tanmaychimurkar.github.io/categories/docker/</loc>
     <lastmod>2022-08-11T10:18:38+00:00</lastmod>
   </url><url>
     <loc>https://tanmaychimurkar.github.io/posts/docker/</loc>
@@ -17,9 +29,6 @@
     <loc>https://tanmaychimurkar.github.io/tags/microservices/</loc>
     <lastmod>2022-08-11T10:18:38+00:00</lastmod>
   </url><url>
-    <loc>https://tanmaychimurkar.github.io/categories/microservices/</loc>
-    <lastmod>2022-08-11T10:18:38+00:00</lastmod>
-  </url><url>
     <loc>https://tanmaychimurkar.github.io/posts/</loc>
     <lastmod>2022-08-11T10:18:38+00:00</lastmod>
   </url><url>
@@ -29,10 +38,10 @@
     <loc>https://tanmaychimurkar.github.io/</loc>
     <lastmod>2022-08-11T10:18:38+00:00</lastmod>
   </url><url>
-    <loc>https://tanmaychimurkar.github.io/categories/docker/</loc>
+    <loc>https://tanmaychimurkar.github.io/tags/docker-images/</loc>
     <lastmod>2022-08-10T04:17:32+00:00</lastmod>
   </url><url>
-    <loc>https://tanmaychimurkar.github.io/posts/docker/docker_intro/</loc>
+    <loc>https://tanmaychimurkar.github.io/categories/microservices/</loc>
     <lastmod>2022-08-10T04:17:32+00:00</lastmod>
   </url><url>
     <loc>https://tanmaychimurkar.github.io/posts/docker/docker_containers/</loc>
