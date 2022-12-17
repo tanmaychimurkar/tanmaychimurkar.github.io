@@ -2,38 +2,38 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>microservices on Tanmay&#39;s Blog</title>
-    <link>http://localhost:1313/tags/microservices/</link>
+    <link>https://tanmaychimurkar.github.io/tags/microservices/</link>
     <description>Recent content in microservices on Tanmay&#39;s Blog</description>
     <image>
-      <url>http://localhost:1313/papermod-cover.png</url>
-      <link>http://localhost:1313/papermod-cover.png</link>
+      <url>https://tanmaychimurkar.github.io/papermod-cover.png</url>
+      <link>https://tanmaychimurkar.github.io/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 11 Aug 2022 10:18:38 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/microservices/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 11 Aug 2022 10:18:38 +0000</lastBuildDate><atom:link href="https://tanmaychimurkar.github.io/tags/microservices/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Docker Images and DockerFile</title>
-      <link>http://localhost:1313/posts/docker/docker_images/</link>
+      <link>https://tanmaychimurkar.github.io/posts/docker/docker_images/</link>
       <pubDate>Thu, 11 Aug 2022 10:18:38 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/docker/docker_images/</guid>
+      <guid>https://tanmaychimurkar.github.io/posts/docker/docker_images/</guid>
       <description>This post explores what are Docker Images and how to create one using a DockerFile</description>
     </item>
     
     <item>
       <title>The basics of Docker to get started</title>
-      <link>http://localhost:1313/posts/docker/docker_intro/</link>
+      <link>https://tanmaychimurkar.github.io/posts/docker/docker_intro/</link>
       <pubDate>Wed, 10 Aug 2022 04:17:32 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/docker/docker_intro/</guid>
+      <guid>https://tanmaychimurkar.github.io/posts/docker/docker_intro/</guid>
       <description>This post goes over the basic concepts of Docker, and why we might want to use it for our software!</description>
     </item>
     
     <item>
       <title>The basics of Images to get started</title>
-      <link>http://localhost:1313/posts/docker/docker_containers/</link>
+      <link>https://tanmaychimurkar.github.io/posts/docker/docker_containers/</link>
       <pubDate>Wed, 10 Aug 2022 04:17:32 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/docker/docker_containers/</guid>
+      <guid>https://tanmaychimurkar.github.io/posts/docker/docker_containers/</guid>
       <description>This post goes over the basic concepts of Docker, and why we might want to use it for our software!</description>
     </item>
     

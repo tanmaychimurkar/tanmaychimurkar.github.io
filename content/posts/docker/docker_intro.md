@@ -2,11 +2,12 @@
 title: "The basics of Docker to get started"
 date: 2022-08-10T04:17:32
 description: "This post goes over the basic concepts of Docker, and why we might want to use it for our software!"
-tags: ["Docker", "Microservices"]
-categories: ["Docker"]
+tags: ["Docker Images","Basics"]
+categories: ["Basics", "Docker"]
 author: "Tanmay"
 showToc: true
 TocOpen: true
+weight: 1
 cover:
     image: "https://www.Docker.com/wp-content/uploads/2022/03/horizontal-logo-monochromatic-white.png"
     alt: Docker
@@ -101,7 +102,9 @@ A more detailed explanation of Docker containers is [here]({{< ref "docker_conta
 ## Summing it up!💡
 
 What we saw so far is a very basic understanding of what Docker is, why we might need it, and what are the basic things 
-we need to understand for breaking our project into small running containers. In the
+we need to understand for breaking our project into small running containers. These small running containers can also
+be thought of as very small virtual machines, and this will be more clear when we look at the 
+[Docker Containers]({{< ref "docker_containers" >}} "Docker Containers") post. In the 
 [next]({{< ref "docker_images" >}} "Docker Images") part, let's look at Docker Images in a bit more detail and how we 
 can create our image. 😺
 

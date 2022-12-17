@@ -87,7 +87,7 @@ params:
           url: "https://medium.com/@chimurkar.tanmay"
 
     editPost:
-        URL: "https://github.com/adityatelange/hugo-PaperMod/tree/exampleSite/content"
+        URL: "https://github.com/tanmaychimurkar/tanmaychimurkar.github.io/tree/main/content"
         Text: "Suggest Changes" # edit text
         appendFilePath: true # to append file path to Edit link
     # todo: this might be applicable to all the blog pages, make sure to see how this config works

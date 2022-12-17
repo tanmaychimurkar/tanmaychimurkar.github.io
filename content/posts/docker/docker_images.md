@@ -1,105 +1,135 @@
 ---
 title: "Docker Images and DockerFile"
 date: 2022-08-11T10:18:38
-description: "This post explores what are Docker Images and how to create one using a DockerFile"
-tags: ["Docker", "microservices"]
-categories: ["microservices"]
+description: "This post goes over what are DockerFiles and Docker Images"
+tags: ["Docker","Basics","microservices"]
+categories: ["Basics", "Docker"]
 author: "Tanmay"
 showToc: true
 TocOpen: true
 cover:
-    image: "https://www.Docker.com/wp-content/uploads/2022/03/horizontal-logo-monochromatic-white.png"
+    image: "https://miro.medium.com/max/1400/1*vb_5008Zbt_pHj7qx44p0Q.png"
     alt: Docker
-    caption: "The [Docker](https://www.Docker.com/) logo showing a **`Whale`** as a Docker to dock containers for us"
+    caption: "Process flow for creating custom Docker Images using DockerFile"
 ShowBreadCrumbs: true
 ---
- ## Why and What?
-In Software Development cycle, developers of every level have either heard or said the following:
-> It works on my machine, I am not sure why it isn't running on yours
+ ## Docker Images
 
-Different software projects have different dependencies, that only keep going uphill, as the product itself evolves.
-When this happens, we need to make sure all interactions between different components have been done correctly in 
-order for the whole application to come together and `run`.
+As we saw in the [basics of Docker]({{< ref "docker_intro" >}} "Docker Basics") post, the base flow of every Docker
+container is an image. A Docker image, whether custom or pre-built, is absolutely necessary for us to be able to run
+anything using Docker. 
 
-`This is the very scenario where things can fall apart very easily!`
+In essence, a Docker image is a union of layered filesystem stacked on top of each other. This stands true fro pre-built
+images as well as custom images that we might create using some pre-built image as a base. 
 
-### Why Docker?
+`Trivia💡`: If every Docker image is a set of layered instructions, then how is the first Docker image created? What
+did the very first Docker image have as a layer to be built on top of?
 
-In scenarios like mentioned above, wouldn't it be useful to have a tool that makes sure that a software is bundled 
-in a way that is irrespective of the base dependencies it requires to be built on?
+Hoping that the description of the Docker images is clear now, let's now take a look at our first Docker image. And
+what better to look at than the image of **Ubuntu** itself!?!?
 
-As I primarily work in [Python](https://www.python.org/), I would like to throw in an analogy. This abstraction tool 
-can be thought of like a [`virual environment`](https://github.com/pyenv/pyenv-virtualenv), with each project having 
-its own separate dependencies which do not interfere with a different project's virtual environment, and every project
-satisfies all the module level dependencies it has once run from inside the virtual environment.
+### Docker Image on Hub
+Use [this](https://hub.docker.com/_/ubuntu) link to navigate to the Docker Hub page of the Ubuntu image. Once there,
+go through the '**What is Ubuntu?**',  and '**What's in this image?**' section. As you might have read, this image ***is Ubuntu***.
+We can use this image for general purpose stuff on Ubuntu. 
 
-Having such a tool to manage whole software, such that it handles all the base dependencies like that of the OS and any 
-other package level dependencies are managed for us would be great, wouldn't it?
+Now let's go to the '**Tags**' section on the webpage, and see what we find there. We can see that there many tags, 
+and the first one that appears should have the TAG '**Latest**', and on it's right, there should be a command that says: 
+`docker pull ubuntu:latest`. If we look at the next tag after **Latest**, notice how the `docker pull` command changes 
+slightly with the name of the **TAG** that we are referring to!
 
-### What is Docker?
+Let's stop for a moment here and summarize what we have seen so far:
+1) Docker Hub has many pre-built images ready for us to explore
+2) Almost all the images have a description about what they are and a small summary of what they contain. Some have 
+much greater description in terms of the **Environment Variables**, but let's look at it later
+3) All the pre-built images on Docker Hub have **Tags**, and every tag is a version of the image
+4) Every image tag has a set of instructions about how to **pull** it. 
 
-In-line with the objectives that we want the above-mentioned tool to perform, let's take a look at Docker. 
->Docker helps abstract away the dependencies for components between varying OS and hardware requirements, and lets
-every part of the project run in an isolated environment.
+Let's understand what the **pull** command does!🐕
 
-Feels like technical mumbo jumbo? Well let's take another go at understanding this. The abstraction that Docker provides
-can be thought of in the following way:
+### Docker Pull
 
-1) Imagine breaking the whole software into multiple smaller pieces, with each piece handling one `complete` part of 
-some logic. This is what we call an isolated part of the project.
-2) For the whole application to be able to run, we need each of the isolated part of the project we created in the step 
-above to be able to run. 
-3) To be able to run each isolated part of the project, we need to satisfy the dependencies that every isolated part 
-needs. Satisfying these dependencies can be thought of as creating environments for each part of the project that we
-isolated.
+Seeing that we have a command linked to a image on Docker Hub, naturally the next step is to get our hands dirty. This
+ helps me get out of my comfort zone, but also helps me bring a concept that I am trying to grasp much easier to 
+understand. I hope this also works the same for you🐈
 
-I hope it is more or less clear what Docker does. If not, fret not! Things should become clearer as we go further with
-terminology.
+**Imp. Note**: For getting our hands dirty here, it is advised to go through the installation of 
+[Docker Desktop](https://docs.docker.com/get-docker/). Personally, I like the 
+[Docker Engine](https://docs.docker.com/engine/install/ubuntu/) with the compose tool more, but to begin with, either 
+of the two installations should work fine.
 
-## Terminology
+With Docker installed on your system, let's verify the docker version. This can be done by opening a terminal and 
+typing:
 
-So far, we have been trying to understand what Docker does in our own analogy and terms. However, things can go out of 
-hand if one does not follow a [standard terminology](http://www.computing.surrey.ac.uk/ai/pointer/report/section1.html).
+```bash
+docker --version
+```
 
-Let's dive in the terminology that will make our life easier to follow.
+If you see a message with version, then we are good to get into the fun part.
 
-Obviously, one should at the end refer to the official [glossary](https://docs.Docker.com/glossary/#image) mentioned by 
-Docker. However, to quickly get us started, I have mentioned some base terminologies below. 
+In the terminal, type the below command to check the current images that docker has on your machine: 
+```bash 
+docker images
+```
 
-### Image
+If you see nothing, or only see the `hello-world` image, then we are good to go. Let's now run the command that we saw 
+on Docker Hub page of **Ubuntu**:
+```bash
+docker pull ubuntu:latest
+```
 
-Since we need to create an isolated environment, we first need to decide what will the base of such an environment have. 
-This base that each isolated environment needs is defined in a Docker image, which contains union of layered filesystems
-stacked on top of each other. 
+Once you run this command, you should see something similar to this:
+```bash
+latest: Pulling from library/ubuntu
+6e3729cf69e0: Pull complete 
+Digest: sha256:27cb6e6ccef575a4698b66f5de06c7ecd61589132d5a91d098f7f3f9285415a9
+Status: Downloaded newer image for ubuntu:latest
+docker.io/library/ubuntu:latest
+```
 
->We can think of image as a small pre-compiled software on which we can run our assigned part of the project, 
-> and using an image is like installing Python or Ubuntu on your own machine.
+What `docker pull` does is it pulls the image from Docker Hub into your local machine. Once the above output is visible 
+in the terminal, we can check the images again with `docker images`, and now we should see the `ubuntu` image with the 
+`latest` tag in the terminal.
 
-Because of the awesome strength of the Docker [community](https://www.docker.com/community/), they decided to keep a 
-collection of the images that people need. This collection of images is listed on the 
-[Docker Hub](https://hub.docker.com/), and we can find all sorts of images, like Alpine Linux and Python.
+This is the way for us to pull pre-built images from Docker Hub
 
-`Note`: Although the Docker hub has many images readily available, we can also create our own Docker images.
+## DockerFile
 
-### Container
+Since Docker images are a union of layered filesystem stacked on top of each other, we can also build our own custom 
+image that does something that we want by building it on top of another pre-built image. To build our own image, we 
+first need to create a `DockerFile`, which is a configuration file that has commands that Docker uses to build our 
+image. Let's have a look at the terminology that the `DockerFile` has.
 
-With the image
+### Terminology
 
+`DockerFile` is just a text document that contains a set of instructions in order that Docker has to execute to build
+our image. Let's now look at some of the most used commands that we need to build our own Docker image, while the main
+ list of commands is still available under [DockerFile reference](https://docs.docker.com/engine/reference/builder/).
 
-like having multiple `small-separate` machines running different pieces of the software (which we 
-specify), running the whole software as Lego blocks, with each of the small machines helping each other. 
+1) `FROM`: This commands sets the base image that we want our own image to be built on top of. Every `DockerFile` 
+should start with a `FROM` command, since every image is built on top of another image. 
 
+2) `RUN`: As the name suggests, this command is used to execute a set of instructions on top of the base image that we 
+use for our own custom image. `RUN` commands can be *run* in two ways: either in *shell* form, or in *exec* form, which
+means there are two ways to *run* commands for the `RUN` instruction. The *shell* form for `RUN` directly uses the 
+instruction like `RUN sh -c echo hello`, while in the *exec* form, the same command would be run as `RUN ["sh", "-c", 
+"echo hello"]`
 
+3) `COPY`: This command is used to *copy* something from our project code inside the Docker image. The copy command 
+needs a `source` location to copy from and a `destination` location to copy inside the Docker image. 
+4) `WORKDIR`: Sets the current working directory for the Docker image, such that all the instructions that follow the
+after setting `WORKDIR` will be executed from that directory.
+5) `CMD`: This instruction is used to specify the default arguments that we want the Docker image to take when we run 
+it. There can only be **one** `CMD` instruction in a DockerFile, and if we have multiple, then only the last one will 
+be executed. `CMD` instruction works as setting default arguments when we want to run an image.
+6) `ENTRYPOINT`: As `CMD` sets a default command, the `ENTRYPOINT` command can override it. However, how the command
+is overridden depends on the whether the *shell* form is used or the *exec* form is used. The most intuitive explanation
+of the interaction between `CMD` and `ENTRYPOINT` is in the 
+[Docker documentation](https://docs.docker.com/engine/reference/builder/#understand-how-cmd-and-entrypoint-interact)
 
-Containers in Docker have their own network, their own volume mounts, their own networks, and are just like VMs. The
-only difference is that all the containers share the same os as the machine on which they are running, unlike VMs who
-also have their own OS when created.
+Whew!!😌 That was a lot of terminology, and we have not even covered eveything from the 
+[DockerFile reference](https://docs.docker.com/engine/reference/builder/). However, we do not need to understand how 
+each and every parameter works in order to get started. Instead, these are the most common commands that are usually 
+inside a `DockerFile` while building custom images.
 
-Container use the kernel to run their process. In such, a linux based OS will only be able to run linux based containers
-on it, and a windows based container will not be able to run on a windows based machine.
-
-Images in Docker are packages or templates that are used to create one or more containers. every container needs an
-image to be able to run.
-
-DockerFile is the configuration of an image should be initialized. DockerFile creates a Docker image, and image runs
-a container.
+Let's now build our own Docker image by building a `DockerFile`🤩
