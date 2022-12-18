@@ -241,7 +241,7 @@ Congratulations!!🥳🎉 You have successfully built your first custom image. Y
 ### Summing Up!💡
 
 We saw in this post how once can either pull images from the Docker Hub or create their own custom images, and run them
-from the terminal. The [next]({{< ref "docker_containers" >}} "Docker Containers")) post will now focus more on the 
+from the terminal. The [next]({{< ref "docker_containers" >}} "Docker Containers") post will now focus more on the 
 later part of running the image once we have it on our machine.
 
 Until then, Cheers!!🕺💃
