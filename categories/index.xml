@@ -9,7 +9,16 @@
       <link>https://tanmaychimurkar.github.io/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 11 Aug 2022 10:18:38 +0000</lastBuildDate><atom:link href="https://tanmaychimurkar.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 13 Oct 2022 05:34:54 +0000</lastBuildDate><atom:link href="https://tanmaychimurkar.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>microservices</title>
+      <link>https://tanmaychimurkar.github.io/categories/microservices/</link>
+      <pubDate>Thu, 13 Oct 2022 05:34:54 +0000</pubDate>
+      
+      <guid>https://tanmaychimurkar.github.io/categories/microservices/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>Basics</title>
       <link>https://tanmaychimurkar.github.io/categories/basics/</link>
@@ -25,15 +34,6 @@
       <pubDate>Thu, 11 Aug 2022 10:18:38 +0000</pubDate>
       
       <guid>https://tanmaychimurkar.github.io/categories/docker/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>microservices</title>
-      <link>https://tanmaychimurkar.github.io/categories/microservices/</link>
-      <pubDate>Wed, 10 Aug 2022 04:17:32 +0000</pubDate>
-      
-      <guid>https://tanmaychimurkar.github.io/categories/microservices/</guid>
       <description></description>
     </item>
     
