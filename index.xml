@@ -29,12 +29,12 @@
     </item>
     
     <item>
-      <title>Docker Container and docker-compose</title>
+      <title>Docker Compose</title>
       <link>https://tanmaychimurkar.github.io/posts/docker/docker_compose/</link>
       <pubDate>Wed, 10 Aug 2022 04:17:32 +0000</pubDate>
       
       <guid>https://tanmaychimurkar.github.io/posts/docker/docker_compose/</guid>
-      <description>This post goes over the usage of Docker container, how to run them, and how to create a compose file so that many Docker images can interact with each other</description>
+      <description>This post explores how we can run multiple Docker containers with a Docker Compose file</description>
     </item>
     
     <item>
