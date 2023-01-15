@@ -20,12 +20,21 @@
     </item>
     
     <item>
-      <title>The basics of Images to get started</title>
+      <title>Docker Container and docker-compose</title>
+      <link>https://tanmaychimurkar.github.io/posts/docker/docker_compose/</link>
+      <pubDate>Wed, 10 Aug 2022 04:17:32 +0000</pubDate>
+      
+      <guid>https://tanmaychimurkar.github.io/posts/docker/docker_compose/</guid>
+      <description>This post goes over the usage of Docker container, how to run them, and how to create a compose file so that many Docker images can interact with each other</description>
+    </item>
+    
+    <item>
+      <title>Docker Containers</title>
       <link>https://tanmaychimurkar.github.io/posts/docker/docker_containers/</link>
       <pubDate>Wed, 10 Aug 2022 04:17:32 +0000</pubDate>
       
       <guid>https://tanmaychimurkar.github.io/posts/docker/docker_containers/</guid>
-      <description>This post goes over the basic concepts of Docker, and why we might want to use it for our software!</description>
+      <description>This post goes over what Docker containers are, how to use them, how to run them, and some general tips that are good to have when managing containers.</description>
     </item>
     
   </channel>
