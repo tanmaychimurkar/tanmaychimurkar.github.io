@@ -1,6 +1,6 @@
 ---
 title: "Docker Compose"
-date: 2022-08-10T04:17:32
+date: 2022-10-13T05:34:54
 description: "This post explores how we can run multiple Docker containers with a Docker Compose file"
 tags: ["Docker", "microservices"]
 categories: ["microservices"]
@@ -8,14 +8,14 @@ author: "Tanmay"
 showToc: true
 TocOpen: true
 cover:
-    image: "https://diginomica.com/sites/default/files/images/2017-09/docker-container.jpg"
+    image: "https://tcude.net/content/images/2022/01/MainImage-2.jpeg"
     alt: Docker
     caption: "The Docker container being run by the Dockerfile inside"
 ShowBreadCrumbs: true
 ---
  ## What are they?
 
-In the [previous]({{< ref "docker_images" >}} "Docker Images") post, we saw how to find Docker images form the [DockerHub](https://hub.docker.com/), and also how to create our own Docker image that `executes` a function. In this post, we will go more over the execution part of Docker, mainly about how to run a Docker image as a container. 
+In the [previous]({{< ref "docker_containers" >}} "Docker Containers") post, we saw how to find Docker images form the [DockerHub](https://hub.docker.com/), and also how to create our own Docker image that `executes` a function. In this post, we will go more over the execution part of Docker, mainly about how to run a Docker image as a container. 
 
 [Docker Containers](https://www.docker.com/resources/what-container/) are Docker images that become containers at run time. Docker containers are short pieces of software that runs an application quickly, as a lightweight standalone package. The containers need an engine to run, and this is the [Docker Engine](https://docs.docker.com/engine/). 
 
