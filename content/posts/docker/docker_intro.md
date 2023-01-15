@@ -30,7 +30,7 @@ In scenarios like mentioned above, wouldn't it be useful to have a tool that mak
 in a way that is irrespective of the base dependencies it requires to be built on?
 
 As I primarily work in [Python](https://www.python.org/)🐍, I would like to throw in an analogy. This abstraction tool 
-can be thought of like a [`virual environment`](https://github.com/pyenv/pyenv-virtualenv), with each project having 
+can be thought of like a [`virtual environment`](https://github.com/pyenv/pyenv-virtualenv), with each project having 
 its own separate dependencies which do not interfere with a different project's virtual environment, and every 
 environment satisfying all the module level dependencies that the project needs.
 
