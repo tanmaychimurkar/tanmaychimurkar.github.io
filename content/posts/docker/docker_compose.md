@@ -1,7 +1,7 @@
 ---
-title: "Docker Container and docker-compose"
+title: "Docker Compose"
 date: 2022-08-10T04:17:32
-description: "This post goes over the usage of Docker container, how to run them, and how to create a compose file so that many Docker images can interact with each other"
+description: "This post explores how we can run multiple Docker containers with a Docker Compose file"
 tags: ["Docker", "microservices"]
 categories: ["microservices"]
 author: "Tanmay"
