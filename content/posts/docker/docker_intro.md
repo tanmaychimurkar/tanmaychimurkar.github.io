@@ -107,31 +107,3 @@ be thought of as very small virtual machines, and this will be more clear when w
 [Docker Containers]({{< ref "docker_containers" >}} "Docker Containers") post. In the 
 [next]({{< ref "docker_images" >}} "Docker Images") part, let's look at Docker Images in a bit more detail and how we 
 can create our image. 😺
-
-[//]: # (like having multiple `small-separate` machines running different pieces of the software &#40;which we )
-
-[//]: # (specify&#41;, running the whole software as Lego blocks, with each of the small machines helping each other. )
-
-[//]: # ()
-[//]: # ()
-[//]: # ()
-[//]: # (Containers in Docker have their own network, their own volume mounts, their own networks, and are just like VMs. The)
-
-[//]: # (only difference is that all the containers share the same os as the machine on which they are running, unlike VMs who)
-
-[//]: # (also have their own OS when created.)
-
-[//]: # ()
-[//]: # (Container use the kernel to run their process. In such, a linux based OS will only be able to run linux based containers)
-
-[//]: # (on it, and a windows based container will not be able to run on a windows based machine.)
-
-[//]: # ()
-[//]: # (Images in Docker are packages or templates that are used to create one or more containers. every container needs an)
-
-[//]: # (image to be able to run.)
-
-[//]: # ()
-[//]: # (DockerFile is the configuration of an image should be initialized. DockerFile creates a Docker image, and image runs)
-
-[//]: # (a container.)
