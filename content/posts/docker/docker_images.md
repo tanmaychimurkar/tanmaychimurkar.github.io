@@ -20,8 +20,7 @@ As we saw in the [basics of Docker]({{< ref "docker_intro" >}} "Docker Basics") 
 container is an image. A Docker image, whether custom or pre-built, is absolutely necessary for us to be able to run
 anything using Docker. 
 
-In essence, a Docker image is a union of layered filesystem stacked on top of each other. This stands true fro pre-built
-images as well as custom images that we might create using some pre-built image as a base. 
+In essence, a Docker image is a union of layered filesystem stacked on top of each other. This stands true for pre-built images as well as custom images that we might create using some pre-built image as a base. 
 
 `Trivia💡`: If every Docker image is a set of layered instructions, then how is the first Docker image created? What
 did the very first Docker image have as a layer to be built on top of?

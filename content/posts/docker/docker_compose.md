@@ -1,7 +1,7 @@
 ---
-title: "Docker Containers"
+title: "Docker Container and docker-compose"
 date: 2022-08-10T04:17:32
-description: "This post goes over what Docker containers are, how to use them, how to run them, and some general tips that are good to have when managing containers."
+description: "This post goes over the usage of Docker container, how to run them, and how to create a compose file so that many Docker images can interact with each other"
 tags: ["Docker", "microservices"]
 categories: ["microservices"]
 author: "Tanmay"
@@ -13,7 +13,7 @@ cover:
     caption: "The Docker container being run by the Dockerfile inside"
 ShowBreadCrumbs: true
 ---
- ## What is a Docker Container?📦
+ ## What are they?
 
 In the [previous]({{< ref "docker_images" >}} "Docker Images") post, we saw how to find Docker images form the [DockerHub](https://hub.docker.com/), and also how to create our own Docker image that `executes` a function. In this post, we will go more over the execution part of Docker, mainly about how to run a Docker image as a container. 
 
@@ -21,7 +21,7 @@ In the [previous]({{< ref "docker_images" >}} "Docker Images") post, we saw how 
 
 Basically, Docker containers make it easier to decentralize a large piece of software such that it can run in isolated environments, and they are what we can refer to as `microservices`. So in this part of the post, we will be running our first use case of `microservices`. We will start with running a single Docker image first, then we will combine many Docker images to run together so that they can interact with each other and run the whole software.
 
-## Running a Container🏃
+## Running a Container
 
 In the [previous]({{< ref "docker_images" >}} "Docker Images") post, we saw how we can either pull a pre-built Docker image from the DockerHub, or create our own custom image. We saw at the end that we had to `run` a specific command in the terminal to get the output from a Docker image. The commands that we ran in the previous post ran the Docker image, and during runtime, it created a Docker container that runs the piece of code that we put inside our own image or the outputs from a pre-built image from the DockerHub.
 
@@ -89,7 +89,7 @@ Below is a list explaining what each of the terms given in the output above mean
 
 So, these are all the fields that are showed by the `docker ps -a` command. Now let's start tampering with the `docker run` command to get a bit more out of the containers when we run them.
 
-### Passing arguments to `docker run` command‼️
+### Passing arguments to `docker run` command
 
 In the previous step, we just used the `docker run` command out of the box on the `Ubuntu` image. However, that did not give us much, not even a friendly terminal to let us inside the container that is running. Let's now try to get inside the `Ubuntu` container to check what it has.
 
@@ -147,7 +147,7 @@ Well, well. We are now inside our running Docker container!!!🐕
 
 We can now `ls` to check what files/directories the container has, and we can look around inside them as part of exploration. Let's now see how we can give a name to a Docker container when we run it, and why is it useful.
 
-### Some tips for running Docker containers💡
+### Some tips for running Docker containers
 
 1) It is very beneficial to give your Docker container a name, since doing so will always maintain a streamlined process of seeing inside the container and accessing it for checking your processes. This can be done by passing in the `--name` flag to the `docker run` command, which is a `Docker` flag unlike the `sleep` command we saw earlier. Let's execute the following command in the terminal:
 
@@ -227,7 +227,7 @@ Are you sure you want to continue? [y/N]
 Deleted Containers:
 f04164a6395f2c472bc5c6f6e59e304baa793b5d7edf106066e0764b51e1ad5d
 
-Total reclaimed space: 98B
+Total reclaimed space: 0B
 ```
 
 This message indicates that all the stopped containers are now removed, alongwith the caches that they had created when started. To check if there are any containers still, you can run
