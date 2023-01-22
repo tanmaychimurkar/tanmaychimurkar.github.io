@@ -7,6 +7,7 @@ categories: ["configurations", "file types"]
 author: "Tanmay"
 showToc: true
 TocOpen: true
+weight: 2
 cover:
     image: "https://cdn.lynda.com/course/500545/500545-636159283603072249-16x9.jpg"
     alt: Configuration File
