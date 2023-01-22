@@ -71,16 +71,8 @@ params:
     homeInfoParams:
         Title: "Hi There 👋"
         Content: >
-            Welcome to my small joint on the Internet. Here I write about things that I find useful in my everyday 
-            software workflow, and more importantly about things that I tend to forget! Below is a summary that I 
-            generated using ChatGPU with prompt: `Write a summary about me based on the below description: 
-            <my experience summary points from my resume>`
-            
-            
-            -
-            - Tanmay is a machine learning and software engineering professional with five years of experience. 
-            He has a strong mind for problem solving and is a team player. He is interested in the future of artificial intelligence and 
-            where it will take us.
+            Welcome to my corner on the Internet. Here I write about things that I find useful in my everyday 
+            software workflow, and more importantly about things that I tend to forget!
             
     socialIcons:
         - name: github
@@ -89,6 +81,8 @@ params:
           url: "https://www.linkedin.com/in/chimurkartanmay/"
         - name: Medium
           url: "https://medium.com/@chimurkar.tanmay"
+        - name: Xing
+          url: "https://www.xing.com/profile/Tanmay_Chimurkar/cv"
 
     editPost:
         URL: "https://github.com/tanmaychimurkar/tanmaychimurkar.github.io/tree/main/content"

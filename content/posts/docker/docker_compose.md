@@ -1,7 +1,7 @@
 ---
 title: "Docker Compose"
 date: 2022-10-13T05:34:54
-description: "This post explores how we can run multiple Docker containers with a Docker Compose file"
+description: "This post explores how we can run multiple Docker containers using a Docker Compose file"
 tags: ["Docker", "microservices"]
 categories: ["microservices"]
 author: "Tanmay"
@@ -10,243 +10,193 @@ TocOpen: true
 cover:
     image: "https://tcude.net/content/images/2022/01/MainImage-2.jpeg"
     alt: Docker
-    caption: "The Docker container being run by the Dockerfile inside"
+    caption: "The Docker Compose file orchestrating multiple Docker Containers"
 ShowBreadCrumbs: true
 ---
- ## What are they?
+ ## Why `Docker Compose`⁉️
 
-In the [previous]({{< ref "docker_containers" >}} "Docker Containers") post, we saw how to find Docker images form the [DockerHub](https://hub.docker.com/), and also how to create our own Docker image that `executes` a function. In this post, we will go more over the execution part of Docker, mainly about how to run a Docker image as a container. 
+In the [previous]({{< ref "docker_containers" >}} "Docker Containers") post, we saw how to run a Docker Container from a Docker image, either custom or pre-built image from the [DockerHub](https://hub.docker.com/). However, as we discussed, a big software is not built on just one Docker Container but many containers, working as microservices. When running multiple such containers, it is important that they are able to interact with each other, be able to exchange data, and thus act as independent blocks of a larger piece of software. In this post, we will go over how to thus run multiple containers together.
 
-[Docker Containers](https://www.docker.com/resources/what-container/) are Docker images that become containers at run time. Docker containers are short pieces of software that runs an application quickly, as a lightweight standalone package. The containers need an engine to run, and this is the [Docker Engine](https://docs.docker.com/engine/). 
+### What is `Docker Compose` file?🐙
+Running multiple containers can be done by a `Docker Compose` file, that acts as a configuration file to choose multiple `Docker Images` and start them as containers, such that they are able to interact with each other. 
 
-Basically, Docker containers make it easier to decentralize a large piece of software such that it can run in isolated environments, and they are what we can refer to as `microservices`. So in this part of the post, we will be running our first use case of `microservices`. We will start with running a single Docker image first, then we will combine many Docker images to run together so that they can interact with each other and run the whole software.
+`Docker Compose` file, also known as `docker-compose.yml`, is a configuration file used to define the services, networks and volumes for a multi-container Docker application. With the help of `docker-compose` command, the services defined in the file can be easily started, stopped, scaled, and managed as a single unit. The file is written in `YAML` format, which is easy to read and understand. It allows developers to define the complete environment for an application in a single file, and manage it more efficiently.
 
-## Running a Container
+Don't be fooled by me throwing the terms `services`, `networks` and `volumes` from the description as some sort of concepts that everyone must know. These are terminologies specific to the `docker-compose.yml` file, and are used as a standard base to create the compose configuration file. Let's look at them in a short detail below. 
 
-In the [previous]({{< ref "docker_images" >}} "Docker Images") post, we saw how we can either pull a pre-built Docker image from the DockerHub, or create our own custom image. We saw at the end that we had to `run` a specific command in the terminal to get the output from a Docker image. The commands that we ran in the previous post ran the Docker image, and during runtime, it created a Docker container that runs the piece of code that we put inside our own image or the outputs from a pre-built image from the DockerHub.
+### `docker-compose.yml` terminology📚
 
-If you followed along with the [previous]({{< ref "docker_images" >}} "Docker Images") post, you should now see the `Ubuntu` image in the terminal when you execute the below command in your terminal.
+Below is a list of some of the main terminology that a `docker-compose.yml` file should follow. 
 
-```bash
-> docker images
-REPOSITORY          TAG       IMAGE ID       CREATED         SIZE
-custom_image        latest    432ba341135f   4 weeks ago     932MB
-ubuntu              latest    6b7dfa7e8fdb   5 weeks ago     77.8MB
+1) `services`: The `services` section is used to define the individual components or microservices that make up the application. Each service is defined as a separate block, with its own configuration options. The options available for each service include the `image` to use, `environment variables`, `ports` to expose, `volumes` to mount, and links to other services. For example, a simple web application might have two services: a web server and a database. The web server service would be defined with the image to use, environment variables, and ports to expose. The database service would be defined with the image to use, environment variables, and volumes to mount.
+
+2) `networks`: The `networks` section is used to define virtual networks that the services in the application can connect to. Services can be connected to multiple networks, allowing them to communicate with each other. When a `service` is connected to a network, it is given an IP address on that network and can communicate with other services on the same network using their IP addresses. This allows services to be isolated from the host system and from the external network, while still being able to communicate with each other. It's also possible to create custom networks and connect services to them. For example, a `docker-compose.yml` file may define a default network called `default` and a custom network called `backend` where all services that need to communicate with each other privately are connected to.
+3) `volumes`: The `volumes` section is used to define storage volumes that can be used by the services in the application. A volume is a way to store data outside a container's filesystem, so that it can be accessed by multiple containers and persist data even if the container is deleted. The storage volumes defined by us are stored in our local machine, under the `/var/lib/docker/volumes` folder. `Volumes` can be defined in a `docker-compose.yml` file and then mounted to a specific service's container. They can also be defined as `external`, which means that they are managed outside `docker-compose` and can be shared by multiple applications. For example, if you have a service that needs to store some data, you can create a volume and mount it to that service's container. This way, even if the container is recreated or deleted, the data stored in the volume will persist. It's also possible to use named volumes, which allows you to reference the volume by name instead of by path on the host. This can make it easier to manage volumes across different environments.
+
+These are only some of the standard terms that are in the `docker-compose` file. However, let us now look at an example of the `docker-compose` file itself to see what the structure of it is. 
+
+## Structure of the `docker-compose.yml` file📋
+
+As we read before, the `docker-compose.yml` is only a `YAML` configuration file. Below is the structure of a very small compose file, that runs the [`PostgreSQL`](https://www.postgresql.org/)
+and the [pgAdmin](https://www.pgadmin.org/) UI tool together. 
+
+The below `docker-compose.yml` file is designed in such a way that we use most of the possible terms that appear in the `docker-compose.yml` file. Do not worry if you don't completely understand each and every term in the file, we will go through their descriptions later. For now, let us have a look at how the file itself looks first. 
+
+`NOTE`: If you want to learn more about what `YAML` files are, have a look at [YAML]({{< ref "../configurations/yaml_files" >}} "YAML Configuration Files") or read the official [YAML](https://yaml.org/) documentation. 
+
+```yaml
+version: "3"
+
+services:
+    postgres:
+        image: postgres
+        restart: always
+        environment:
+            POSTGRES_PASSWORD: postgres
+            POSTGRES_USER: postgres
+        ports:
+            - 5432:5432
+        volumes:
+            - postgres:/var/lib/postgresql/data
+
+    pgadmin:
+        image: dpage/pgadmin4
+        environment:
+            PGADMIN_DEFAULT_EMAIL: admin@pgadmin.com
+            PGADMIN_DEFAULT_PASSWORD: password
+            PGADMIN_LISTEN_PORT: 80
+        ports:
+            - 1542:80
+        volumes:
+            - pgadmin:/var/lib/pgadmin
+        depends_on:
+            - postgres
+
+volumes:
+    postgres:
+    pgadmin:
 ```
 
-In case you did not follow the previous post, we can run the following command in the terminal first to pull a Docker image and then continue:
+We can now see that the terms `services` and `volumes` are defined in the above compose file, however there are also new terms that we did not yet see. Let us now go through the compose file above to see what each entry means.
+
+1) `postgres/pgadmin`: This is the name we want to give to the `services` before we start defining them. Once we run the containers defined in the compose file, we will see each running container for a service by this name. And just like in the [previous]({{< ref "docker_containers" >}} "Docker Containers") post, we can `exec` into each of the `services` by the name that we choose to give it. Please note that the name is given by us, and is not something that is attached to a particular image.
+2) `image`: This is the image that we want the `service` to use when we run it. This can be either an image from the [DockerHub](https://hub.docker.com/), or our own image. If we are using owr own custom image in the compose file, then it's `relative path` compared to the `docker-compose.yml` file should be passed in the `image` term.
+3) `environment`: This term defines a list of `environment` variables that we want our `services` to use. The `environment` variables are not shared across different services, and should be defined individually for each of the service that we define in the `docker-compose` file.
+4) `ports`: This term is central for the end user running the `docker-compose` file. This term defines the `port` that is to be exposed on the local machine from inside the `docker` network that is defined when the `docker-compose.yml` file is run. For us to be able to access a running application, we define the port in the first part of the ports, and the second part is the port that the `service` is running on inside the docker `network`.
+5) `volumes`: There are 2 ways `volumes` can be defined in the `docker-compose` file:
+   1) `named volumes`: These volumes are managed by docker-compose and can be referenced by name in the docker-compose.yml file.
+   2) `bind mounts`: These volumes are defined by a specific path on the host machine and mounted inside the container.
+   Usually, it is advised to use `named volumes` instead of `bind volumes` in the compose file, as `named volumes` are managed directly by `Docker`, and can be moved/deleted using the `Docker CLI`.
+   The `volume` that is defined in the above compose file are also `named volumes`, where the first half of the `volumes` term is the name we want to give to the names volume, and the second half is the actual location of the directory that we want to be stored in our named `volume`.
+6) `depends_on`: This is a term that controls if a service is dependent on any other service. We have to define the names of the `services` that we want to start before the current `service` where the `depends_on` term is defined. This makes sense by looking at the above scenario: We do not want the `pgadmin` service to start before the `postgres` service, as there will be no database to attach to, and thus the tool will not be able to locate our database. 
+
+Phew!! That was a very long terminology that is followed inside the `docker-compose.yml` file. However, there should still be some alarm bells ringing in your head if you read the above descriptions.
+
+> 1) How do we know what `volume` to mount on our local machine? 
+> 2) How do we know what `environment` variables to define for a `service` to be able to run successfully? 
+> 3) What is the default `port` that are particular service starts at when we run it? 
+
+Fret not! These questions all have a answer that is easy to find. 
+
+### Get variables for a `service` based on the `image`🔍
+All the above questions are dependent on the `Docker Image` that a particular `service` is using. For example, if you look at the `Environment Variables` section of the [postgres](https://hub.docker.com/) image on DockerHub, then you will find that the `environment` variable `POSTGRES_PASSWORD` is the only required variable for the container to run successfully. We also pass the `POSTGRES_USER` variable just so we see how to pass other `environment` variables to a particular service as well.
+
+And from the `PG_DATA` section on the webpage, we can find that default directory where `postgres` stores the data is `/var/lib/postgresql/data` directory, and that is the directory that we choose to mount in a `named` volume in our compose file. 
+
+Now that we have MOST of the terminology that a `docker-compose.yml` file has, it is time to run the `compose` file to see things in action. 
+
+`IMPORTANT`: Before running the next part, be sure to have `Docker Compose` installed. Please follow [this](https://docs.docker.com/compose/install/) link to install the `Compose` tool on your machine.
+
+## Running your containers📦
+Run the below command in your terminal to start all the `services` from the `docker-compose.yml` file. 
 
 ```bash
-docker pull ubuntu:latest 
+docker-compose up
 ```
 
-Now we are ready to proceed. To start the Docker container, we can start by typing the following command in the terminal
+`NOTE`: Depending on which tool you install, you should either have the `docker-compose up` command or the `docker compose up` command.
+
+Once you run the command, you should see something like this in your terminal window:
 
 ```bash
-docker run ubuntu
+> docker-compose up
+> docker-compose up
+Creating network "user_default" with the default driver
+Pulling postgres (postgres:)...
+latest: Pulling from library/postgres
+8740c948ffd4: Pull complete
+c8dbd2beab50: Pull complete
+05d9dc9d0fbd: Pull complete
+ddd89d5ec714: Pull complete
+f98bb9f03867: Pull complete
+0554611e703f: Pull complete
+64e0a8694477: Pull complete
+8b868a753f47: Pull complete
+12ed9aefbab3: Pull complete
+825b08d51ffd: Pull complete
+8f272b487267: Pull complete
+ba2eed7bd2cc: Pull complete
+ff59f63f47d6: Pull complete
+Digest: sha256:6b07fc4fbcf551ea4546093e90cecefc9dc60d7ea8c56a4ace704940b6d6b7a3
+Status: Downloaded newer image for postgres:latest
+Pulling pgadmin (dpage/pgadmin4:)...
+latest: Pulling from dpage/pgadmin4
+8921db27df28: Pull complete
+d10ee54273de: Pull complete
+3cf1e77a6858: Pull complete
+07b97201e1e9: Pull complete
+b77bae207213: Pull complete
+0fcc0c06a94f: Pull complete
+3c9a847b1b09: Pull complete
+6ad9bb3cc48b: Pull complete
+246134c219b2: Pull complete
+ac0085153d3a: Pull complete
+8860f79c6eae: Pull complete
+8b0e5eb7caab: Pull complete
+2387bc6168f4: Pull complete
+0be474dc7144: Pull complete
+Digest: sha256:79b2d8da14e537129c28469035524a9be7cfe9107764cc96781a166c8374da1f
+Status: Downloaded newer image for postgres:latest
+Status: Downloaded newer image for dpage/pgadmin4:latest
+Creating user_postgres_1 ... done # Creating Users
+Creating user_pgadmin_1  ... done
+Attaching to user_postgres_1, user_pgadmin_1
+# Starting services
+postgres_1  | 
+postgres_1  | PostgreSQL Database directory appears to contain a database; Skipping initialization
+postgres_1  | 
+postgres_1  | 2023-01-21 23:47:11.847 UTC [1] LOG:  starting PostgreSQL 15.1 (Debian 15.1-1.pgdg110+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 10.2.1-6) 10.2.1 20210110, 64-bit
+postgres_1  | 2023-01-21 23:47:11.847 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+postgres_1  | 2023-01-21 23:47:11.847 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+postgres_1  | 2023-01-21 23:47:12.035 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+postgres_1  | 2023-01-21 23:47:12.233 UTC [29] LOG:  database system was interrupted; last known up at 2023-01-17 13:43:30 UTC
+postgres_1  | 2023-01-21 23:47:14.213 UTC [29] LOG:  database system was not properly shut down; automatic recovery in progress
+postgres_1  | 2023-01-21 23:47:14.315 UTC [29] LOG:  redo starts at 0/249F8F8
+postgres_1  | 2023-01-21 23:47:14.315 UTC [29] LOG:  invalid record length at 0/249F9E0: wanted 24, got 0
+postgres_1  | 2023-01-21 23:47:14.315 UTC [29] LOG:  redo done at 0/249F9A8 system usage: CPU: user: 0.00 s, system: 0.00 s, elapsed: 0.00 s
+postgres_1  | 2023-01-21 23:47:14.469 UTC [27] LOG:  checkpoint starting: end-of-recovery immediate wait
+postgres_1  | 2023-01-21 23:47:14.948 UTC [27] LOG:  checkpoint complete: wrote 3 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.149 s, sync=0.049 s, total=0.564 s; sync files=2, longest=0.025 s, average=0.025 s; distance=0 kB, estimate=0 kB
+postgres_1  | 2023-01-21 23:47:14.999 UTC [1] LOG:  database system is ready to accept connections
+# Now pgAdmin starts
+pgadmin_1   | [2023-01-21 23:47:19 +0000] [1] [INFO] Starting gunicorn 20.1.0
+pgadmin_1   | [2023-01-21 23:47:19 +0000] [1] [INFO] Listening at: http://[::]:80 (1)
+pgadmin_1   | [2023-01-21 23:47:19 +0000] [1] [INFO] Using worker: gthread
+pgadmin_1   | [2023-01-21 23:47:19 +0000] [86] [INFO] Booting worker with pid: 86
 ```
 
-If all is correct, you should see, well nothing. But why is that? We just ran our `Ubuntu` image as a Docker container, but we don't see anything on the terminal when we run it. 
+From the above output of running the `docker-compose.yml` file, we see note the following:
 
-### `docker ps` command
-To check whether a particular image is successfully run or not, we need to execute the following command in the terminal:
+1) The images are first pulled, which is what we saw in the [Docker Images]({{< ref "docker_images" >}} "Docker Images") post, 
+2) Once they are pulled, we see the there are `users` created that we had defined in the compose file above. However, you should see at `# Creating Users` line in the description above to see that the `user` names have the prefix `_1` attached to them. This is the default behaviour by `Docker`, and we can have our own prefix by passing the argument `-p OUR_PREFIX_NAME`.
+3) On the comment `# Starting Services` in the above output, we see that the services themselves have started. We see first logs from the `postgres` service, and then from the `pgadmin` service. Notice that the `pgadmin` service only starts after the `# Now pgAdmin starts` comment in the above output. This is inline with the `depends_on` clause that we had defined in our `compose` file.
 
-```bash
-docker ps
-```
+Once you see the above output, you can go on `localhost:1542` (or whichever port you had chosen to be exposed on your local machine), and you should see the `pgAdmin` default webpage. Once there, login with the `email` and the `password` defined in the `PGADMIN_DEFAULT_EMAIL` and the `PGADMIN_DEFAULT_PASSWORD` environment variables. You should then be logged in, and should then see that the default `postgres` database is also visible. 
 
-The [`docker ps`](https://docs.docker.com/engine/reference/commandline/ps/) command lists all the containers. So if you ran the `Ubuntu` image as per the previous step, then the `docker ps` command should show that the `Ubuntu` container is running. Let's try to check if that is the case. In the terminal, execute the following command:
+## Congratulations🙌🎉🥳🙌🎉🥳
 
-```bash
-docker ps
-```
+Well Well Well!! Congratulations to you on being a pro Docker user and on coming this far.
 
-However, the output we see in the terminal should be the following:
+You are now equipped with the most awesome and popular microservice creation tool in your skills bag. With this skill, you are now unstoppable in creating the largest piece of software by dividing it into many smaller parts, that are much easier to manage than a giant Monolith of code. 
 
-```bash
-> docker ps
-CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
-```
-
-Hmm, weird right? The documentation says that the `docker ps` command gives us a list of the containers. But we do not see anything in the terminal. This is because the `docker ps` command only list the containers that are `running` by default. And for our `Ubuntu` image, we did not give any specific command to run when we started the container via the `docker run` command. Which is why it is not showing up under the `docker ps` command. To check if the container was ranning when we started it, we need to pass the `-a` flag to the `docker ps` command. Let's run the following command in the terminal to check this:
-
-```bash
-> docker ps -a
-CONTAINER ID   IMAGE                 COMMAND                  CREATED          STATUS                      PORTS     NAMES
-4c42acd7b1cd   ubuntu                "bash"                   10 minutes ago   Exited (0) 10 minutes ago             condescending_villani
-```
-
-We should see something like above in the terminal, with a different string under the `NAMES`  and the `CONTAINER ID` column. Let's see what terms shown in the output of the `docker ps -a` command mean.
-
-Below is a list explaining what each of the terms given in the output above mean:
-1) `CONTAINER ID`: This column lists the id that a Docker container is given when it is run. This is a random id that is generated everytime a Docker container is run. If we run the same Docker image multiple times to start containers, it is very unlikely that the `CONTAINER ID` will be the same across different containers.
-2) `IMAGE`: This column gives the name of the Docker image that was used to start the Docker container. In our case, since we started the container using the command `docker run ubuntu` in the terminal, the `IMAGE` section correctly lists the `ubuntu` image in its run.
-3) `COMMAND`: This column lists the default command that is run when the Docker container is started. Since for the case of the `ubuntu` container, we did not specify any command, a default `bash` command is run on startup. 
-4) `CREATED`: This field mentions the time when the container is started. 
-5) `STATUS`: This field gives us a status of the container. In our case, we see the status code as being `Exited (0) 10`. This signifies that the `ubuntu` container was started, and is now shut down and is not running. The `STATUS` field helps us figure out the current status of a Docker container once it is started, and it can take different values, ranging from `Creating ...` to `Up ...`, which indicates that the container is either starting up or it is running for the amount of time mentioned after the `Up` string, respectively.
-6) `PORTS`: This field gives a list of ports that are to be exposed from inside the Docker container to the local user's machine, so that the local user can access the port outside of Docker's network
-7) `NAMES`: This field outputs the name that the docker container has when it is running. The name of a Docker container when it is run is also generated at random everytime a Docker container is started, but unlike the `CONTAINER ID` field, the name can be controlled and kept static for a particular Docker container. 
-
-So, these are all the fields that are showed by the `docker ps -a` command. Now let's start tampering with the `docker run` command to get a bit more out of the containers when we run them.
-
-### Passing arguments to `docker run` command
-
-In the previous step, we just used the `docker run` command out of the box on the `Ubuntu` image. However, that did not give us much, not even a friendly terminal to let us inside the container that is running. Let's now try to get inside the `Ubuntu` container to check what it has.
-
-To do this, we first need to make the `Ubuntu` container execute a different command at runtime when it is started. For this, we can pass additional arguments to the `docker run` command in the terminal as follows:
-
-```bash
-docker run ubuntu sleep 3600
-```
-
-The `sleep` command that we pass is not a Docker argument, but a `Linux` system argument.
-
-`Tip`: You can check more about the sleep command by running `man sleep` in your terminal (Only works for Linux-based OS like Ubuntu or MacOS)
-
-The `sleep` command will override the default `bash` command from the `Ubuntu` container, and make the container sleep for the 3600 seconds 60 minutes. That should give us enough time to check what is inside the container.
-
-So, once we have run the above command, we should see that the terminal does not exit like in the initial `docker run` command, but is in a way just stuck. However, if you open a new terminal and list all the containers with `docker ps -a`, we should now see the following:
-
-
-```bash
-> docker ps -a
-CONTAINER ID   IMAGE     COMMAND        CREATED         STATUS        PORTS     NAMES
-8ec5ceccbd72   ubuntu    "sleep 3600"   3 seconds ago   Up 1 second             fervent_mclaren
-```
-
-Notice how in the `STATUS` field it now shows `Up 1 second`. And also take a look `COMMAND` section to see that it now shows `sleep 3600` as the command instead of `bash` like the previous case. That means the command that we passed while starting the container worked, and is executed as soon as the `Ubuntu` container is started. Let us now see what is inside the `Ubuntu` container.
-
-### Going inside a running container
-
-Now that the `ubuntu` container is running, we can look inside it. The default method to look what is inside a container is to get a terminal, and we can do the same for the `ubuntu` container. To get a terminal inside the container, we can run the following command:
-
-```bash
-> docker exec -it <identifier>
-```
- 
-The [`exec`](https://docs.docker.com/engine/reference/commandline/exec/) command is used to run a command inside a running container. And to let Docker know which container we want to choose to execute the command, we need to pass an `<identifier>` above, which can either be the `NAME` of the container or the `CONTAINER ID`. Let's pass the `CONTAINER ID` for now, but we can pass `NAME` in exactly the same way.
-
-`Pro Tip`: For passing the `CONTAINER ID` as an identifier for the `exec` command, we do not need to pass the full container id. Instead, we can just pass the first 3 characters of the `CONTAINER ID` to the exec command, and it will still be executed inside the correct running container. 
-
-To execute and get a shell inside the running container, run the following command:
-
-```bash
-docker exec -it 8ec bash
-```
-
-Please make sure to pass the correct first 3 characters from your `CONTAINER ID`, since every `CONTAINER ID` is randomly generated, and your `CONTAINER ID` will not be the same as mine.
-
-Once we run the above command in a new terminal, we should see the following output:
-
-```bash
-> docker exec -it 8ec bash
-root@8ec5ceccbd72:/# 
-```
-
-Well, well. We are now inside our running Docker container!!!🐕
-
-We can now `ls` to check what files/directories the container has, and we can look around inside them as part of exploration. Let's now see how we can give a name to a Docker container when we run it, and why is it useful.
-
-### Some tips for running Docker containers
-
-1) It is very beneficial to give your Docker container a name, since doing so will always maintain a streamlined process of seeing inside the container and accessing it for checking your processes. This can be done by passing in the `--name` flag to the `docker run` command, which is a `Docker` flag unlike the `sleep` command we saw earlier. Let's execute the following command in the terminal:
-
-```bash
-docker run  --name my_ubuntu_image ubuntu sleep 1000
-```
-
-You can pass either `my_ubutu_image` as the name of your container, or you can get creative and pass something that you like as a name for your Docker container. Once we run the above command, you can open a new terminal and check running containers with `docker ps -a`. Once you do, you should now see something like the following output:
-
-
-```bash
-> docker ps -a
-CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS          PORTS     NAMES
-f04164a6395f   ubuntu    "sleep 1000"             3 seconds ago    Up 1 second               my_ubuntu_image
-```
-
-Notice how the docker container now has in the `NAMES` field the name `my_ubuntu_image`, or whatever name you passed along in the `--name` flag. Now if you want to `exec` inside the running container, instead of passing the `CONTAINER ID`, we can pass the name of the container and it will go inside. Let's try this out with `docker exec -it my_ubuntu_image bash` to get bash inside the docker container. You should definitely see something like the following:
-
-
-```bash
-> docker exec -it my_ubuntu_image bash
-root@f04164a6395f:/# 
-```
-
-Now we can always refer to our container while running commands with its name.
-
-2) Now that we have a `Ubuntu` container running, we need to know how to stop it. We need to stop old containers before running new ones, since Docker does not let us run two containers with the same name twice. To check this, run the following command again in a new terminal:
-
-```bash
-docker run  --name my_ubuntu_image ubuntu sleep 1000
-```
-
-You should get the following error message:
-
-```bash
-> docker run --name my_ubuntu_image ubuntu
-docker: Error response from daemon: Conflict. The container name "/my_ubuntu_image" is already in use by container "f04164a6395f2c472bc5c6f6e59e304baa793b5d7edf106066e0764b51e1ad5d". You have to remove (or rename) that container to be able to reuse that name.
-```
-
-The error message tells us that there is a conflict with the container name, since we are already running a `Ubuntu` container with the same name. To rerun a new container with the same name, we first need to stop the one that is running currently. For this, we need to run the following command in a new terminal:
-
-```bash
-> docker stop my_ubuntu_image
-```
-
-Once you run this command, the terminal will be back after the command is executed successfully, and if you now get a list of all the containers, you should see the following:
-
-```bash
-> docker ps -a
-CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS                       PORTS     NAMES
-f04164a6395f   ubuntu    "sleep 1000"             12 minutes ago   Exited (137) 9 seconds ago             my_ubuntu_image
-```
-As you can see, the `STATUS` field now shows `Exited ...` under it instead of the previously shown `Up for x seconds`. This means that our `Ubuntu` container has stopped running, and we are ready to start another container with the same desired name. 
-
-3) As per the above step, you now know how to stop a docker container. However, if you run the container again, you will still get the same error message with the `name conflict` as before. That is because docker not only needs you to stop the container, but to completely remove it before starting a new container. To do this, we can run the following command in a new terminal:
-
-```bash
-docker system prune
-```
-
-You should then show the following prompt in your terminal window:
-
-```bash
-> docker system prune
-WARNING! This will remove:
-  - all stopped containers
-  - all networks not used by at least one container
-  - all dangling images
-  - all dangling build cache
-
-Are you sure you want to continue? [y/N] 
-```
-
-[`docker system prune`](https://docs.docker.com/engine/reference/commandline/system_prune/) simply removes all the unnecessary data from your Docker environment, like stopped containers, containers that could not start correctly, or cache that a container created on your machine when it was started. In the above prompt, type `y` and press enter to let docker clear all stopped containers and the data related to them. Once this is successful, you should see a message as follows:
-
-```bash
-Deleted Containers:
-f04164a6395f2c472bc5c6f6e59e304baa793b5d7edf106066e0764b51e1ad5d
-
-Total reclaimed space: 0B
-```
-
-This message indicates that all the stopped containers are now removed, alongwith the caches that they had created when started. To check if there are any containers still, you can run
-`docker ps -a`. 
-
-If you want to manually remove only one specific container from the stopped containers afters stopping it, you can run the following command instead:
-
-```bash
-docker rm <container name or id>
-```
-
-This will remove only the container whose name or id you passed. 
-
-The methodology of running containers from pre-built docker images can be extended to running custom images as containers that we create according to the [previous]({{< ref "docker_images" >}} "Docker Images") post, or any custom container of your choice. All the list of commands remain the same, only the pre-built `ubuntu` image from the above commands needs to be replaced with your own custom image.
-
-## Running multiple containers and make them interact with each other
-
-So far, we have seen how to run a single image as a container, give it a name, pass some commands to override the default commands, how to stop and remove it. However, large pieces of software are rarely built on only one running container, and there are always many containers handling one specific task of the software independent of other tasks that are run by the software.
-
-For this, we need to run multiple containers at once, and these containers also need to be able to interact with each other in order to make the software run successfully. Once simple examples where different containers can be run to do different tasks is run a [`PostgreSQL`](https://www.postgresql.org/) database to store some results from an API, a container to run the API itself, and a [pgAdmin](https://www.pgadmin.org/) UI tool to interact with the database to check if the data that the API returns are being stored successfully inside the postgreSQL database. This sounds like a very general purpose use-case that many companies have in common, and this can be managed very efficiently via docker containers. We will see more about this in the [next]({{< ref "docker_compose" >}} "Docker Compose") post of `Docker Compose` files, which allows us to run multiple containers at once.
-
+Thank you for reading this far, and I hope I was able to help you learn something new!! Until next time 😎😎😎
 
