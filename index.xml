@@ -20,21 +20,21 @@
     </item>
     
     <item>
-      <title>Docker Images and DockerFile</title>
-      <link>https://tanmaychimurkar.github.io/posts/docker/docker_images/</link>
-      <pubDate>Thu, 11 Aug 2022 10:18:38 +0000</pubDate>
-      
-      <guid>https://tanmaychimurkar.github.io/posts/docker/docker_images/</guid>
-      <description>This post goes over what are DockerFiles and Docker Images</description>
-    </item>
-    
-    <item>
       <title>Configuration files</title>
       <link>https://tanmaychimurkar.github.io/posts/configurations/yaml_files/</link>
       <pubDate>Thu, 17 Nov 2022 15:17:29 +0000</pubDate>
       
       <guid>https://tanmaychimurkar.github.io/posts/configurations/yaml_files/</guid>
       <description>This post goes over what `configuration` files are and where are they useful</description>
+    </item>
+    
+    <item>
+      <title>Docker Images and DockerFile</title>
+      <link>https://tanmaychimurkar.github.io/posts/docker/docker_images/</link>
+      <pubDate>Thu, 11 Aug 2022 10:18:38 +0000</pubDate>
+      
+      <guid>https://tanmaychimurkar.github.io/posts/docker/docker_images/</guid>
+      <description>This post goes over what are DockerFiles and Docker Images</description>
     </item>
     
     <item>
