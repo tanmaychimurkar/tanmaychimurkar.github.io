@@ -11,6 +11,15 @@
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Thu, 13 Oct 2022 05:34:54 +0000</lastBuildDate><atom:link href="https://tanmaychimurkar.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>configurations</title>
+      <link>https://tanmaychimurkar.github.io/tags/configurations/</link>
+      <pubDate>Thu, 13 Oct 2022 05:34:54 +0000</pubDate>
+      
+      <guid>https://tanmaychimurkar.github.io/tags/configurations/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Docker</title>
       <link>https://tanmaychimurkar.github.io/tags/docker/</link>
       <pubDate>Thu, 13 Oct 2022 05:34:54 +0000</pubDate>
@@ -20,11 +29,38 @@
     </item>
     
     <item>
+      <title>ini</title>
+      <link>https://tanmaychimurkar.github.io/tags/ini/</link>
+      <pubDate>Thu, 13 Oct 2022 05:34:54 +0000</pubDate>
+      
+      <guid>https://tanmaychimurkar.github.io/tags/ini/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>json</title>
+      <link>https://tanmaychimurkar.github.io/tags/json/</link>
+      <pubDate>Thu, 13 Oct 2022 05:34:54 +0000</pubDate>
+      
+      <guid>https://tanmaychimurkar.github.io/tags/json/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>microservices</title>
       <link>https://tanmaychimurkar.github.io/tags/microservices/</link>
       <pubDate>Thu, 13 Oct 2022 05:34:54 +0000</pubDate>
       
       <guid>https://tanmaychimurkar.github.io/tags/microservices/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>yaml</title>
+      <link>https://tanmaychimurkar.github.io/tags/yaml/</link>
+      <pubDate>Thu, 13 Oct 2022 05:34:54 +0000</pubDate>
+      
+      <guid>https://tanmaychimurkar.github.io/tags/yaml/</guid>
       <description></description>
     </item>
     
