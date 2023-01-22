@@ -1,6 +1,6 @@
 ---
 title: "Docker Compose"
-date: 2022-10-13T05:34:54
+date: 2022-11-16T10:26:41
 description: "This post explores how we can run multiple Docker containers using a Docker Compose file"
 tags: ["Docker", "microservices"]
 categories: ["microservices"]

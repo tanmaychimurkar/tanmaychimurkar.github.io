@@ -1,6 +1,6 @@
 ---
 title: "Configuration files"
-date: 2022-10-13T05:34:54
+date: 2022-11-17T15:17:29
 description: "This post goes over what `configuration` files are and where are they useful"
 tags: ["yaml", "json", "ini", "configurations"]
 categories: ["configurations", "file types"]
@@ -24,7 +24,7 @@ For example, a web server might have a `configuration` file that specifies the I
 
 By using configuration files, administrators and developers can easily configure and customize the behavior of a program or system without having to modify the code or recompile the program.
 
-## What is the `JSON` configuration file?
+## What is the `JSON` configuration file❓
 
 A `JSON` (JavaScript Object Notation) configuration file is a file format that stores simple data structures and objects in a human-readable, easy-to-access manner. `JSON` files are often used to store configuration settings and data for software applications, and can be easily read and edited by both humans and machines. They are typically saved with a .`JSON` file extension and use a syntax similar to that of JavaScript objects. `JSON` files can be easily parsed and processed by many programming languages, making them a popular choice for configuration files.
 
@@ -54,7 +54,7 @@ The keys are strings, enclosed in double quotes, and the values can be either 's
 
 String values must also be enclosed in `double quotes` (`"`).
 
-## What is the `YAML` configuration file? 
+## What is the `YAML` configuration file❓
 
 `YAML` (short for "YAML Ain't Markup Language") is a human-readable data serialization format that is often used for configuration files, data exchange, and data structuring. It is designed to be easy to read and write, and is often used as an alternative to `XML` or `JSON`.
 
@@ -93,7 +93,7 @@ fruits:
 ```
 In this example, fruits is a key and the indented items are the list of values for the key.
 
-## What is the `INI` configuration file?
+## What is the `INI` configuration file❓
 
 An `INI` (Initialization) file is a configuration file used by some software applications to store settings and options. It is a simple text file that contains key-value pairs organized into sections. The format of an `INI` file is similar to that of a Windows `INI` file, although it is not limited to Windows.
 
