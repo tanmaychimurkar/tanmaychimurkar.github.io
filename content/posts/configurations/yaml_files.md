@@ -2,7 +2,7 @@
 title: "Configuration files"
 date: 2022-11-17T15:17:29
 description: "This post goes over what `configuration` files are and where are they useful"
-tags: ["yaml", "json", "ini", "configurations"]
+tags: ["yaml", "json", "ini", "toml", "configurations"]
 categories: ["configurations", "file types"]
 author: "Tanmay"
 showToc: true
@@ -17,7 +17,7 @@ ShowBreadCrumbs: true
 
 ## What is a `configuration` file⁉️ 
 
-A `configuration` file is a text file that contains various `settings` and `options` that control the behavior of a software program or system. The file is usually written in a specific format, such as `JSON`, `YAML`, or `INI`, and is read by the program or system at startup. The settings in the configuration file can be modified to change the behavior of the program or system without having to change the code.
+A `configuration` file is a text file that contains various `settings` and `options` that control the behavior of a software program or system. The file is usually written in a specific format, such as `JSON`, `YAML`,`INI`, or `TOML` and is read by the program or system at startup. The settings in the configuration file can be modified to change the behavior of the program or system without having to change the code.
 
 A `configuration` file can include options such as the location of other files or resources, user preferences, settings for different environments (e.g. development, production), and various other parameters that control how the program or system behaves. Configuration files are often used to configure servers, network devices, and other types of systems.
 
@@ -123,6 +123,36 @@ Comments can also be added by starting the line with a semi-colon `;` or a hash 
 Unlike `JSON` or `XML`, `INI` files are not formal, standard format and the syntax may vary depending on the application which uses it. They are often used for simple configuration settings where a more complex format is not required.
 
 `NOTE`: It's important to note that the INI file format does not have a formal specification and thus the syntax may vary depending on the application that uses it. However, most implementations follow the above structure and this is a common format for INI files.
+
+## What is the `TOML` configuration file❓
+
+`TOML` (Tom's Obvious, Minimal Language) is a configuration file format that is similar to INI files but with some additional features. It is designed to be easy to read and write, and is intended to be a more robust and consistent alternative to INI files.
+
+Below is an example of how a `TOML` file looks like:
+
+```toml
+[section1]
+key1 = "value1"
+key2 = "value2"
+
+[section2]
+key3 = "value3"
+key4 = "value4"
+```
+
+### Things to note about the `TOML` file
+
+`TOML` files are divided into sections, which are enclosed in square brackets `[]`, just like the `ini` files.
+
+Each section contains one or more key-value pairs, separated by an equal sign `=`.
+
+The keys must be unique within the section, and they are case-sensitive.
+
+The values can be strings, integers, floats, booleans, and datetime.
+
+`TOML` files support inline comments, with the `#` symbol.
+
+`TOML` is designed to be easy to parse, and it is more consistent than INI files. It is also more expressive and can handle more complex data types. `TOML` is used as a configuration file format in a number of programming languages and projects, such as `Rust` and `Cargo`.
 
 ## Congratulations🙌🎉🥳🙌🎉🥳
 
