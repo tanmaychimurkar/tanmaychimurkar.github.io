@@ -9,7 +9,34 @@
       <link>https://tanmaychimurkar.github.io/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 17 Nov 2022 15:17:29 +0000</lastBuildDate><atom:link href="https://tanmaychimurkar.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 16 Dec 2022 16:32:59 +0000</lastBuildDate><atom:link href="https://tanmaychimurkar.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Ease of access</title>
+      <link>https://tanmaychimurkar.github.io/tags/ease-of-access/</link>
+      <pubDate>Fri, 16 Dec 2022 16:32:59 +0000</pubDate>
+      
+      <guid>https://tanmaychimurkar.github.io/tags/ease-of-access/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tmux</title>
+      <link>https://tanmaychimurkar.github.io/tags/tmux/</link>
+      <pubDate>Fri, 16 Dec 2022 16:32:59 +0000</pubDate>
+      
+      <guid>https://tanmaychimurkar.github.io/tags/tmux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Unix tools</title>
+      <link>https://tanmaychimurkar.github.io/tags/unix-tools/</link>
+      <pubDate>Fri, 16 Dec 2022 16:32:59 +0000</pubDate>
+      
+      <guid>https://tanmaychimurkar.github.io/tags/unix-tools/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>configurations</title>
       <link>https://tanmaychimurkar.github.io/tags/configurations/</link>
@@ -65,38 +92,11 @@
     </item>
     
     <item>
-      <title>Ease of access</title>
-      <link>https://tanmaychimurkar.github.io/tags/ease-of-access/</link>
-      <pubDate>Wed, 16 Nov 2022 10:26:41 +0000</pubDate>
-      
-      <guid>https://tanmaychimurkar.github.io/tags/ease-of-access/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>microservices</title>
       <link>https://tanmaychimurkar.github.io/tags/microservices/</link>
       <pubDate>Wed, 16 Nov 2022 10:26:41 +0000</pubDate>
       
       <guid>https://tanmaychimurkar.github.io/tags/microservices/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>tmux</title>
-      <link>https://tanmaychimurkar.github.io/tags/tmux/</link>
-      <pubDate>Wed, 16 Nov 2022 10:26:41 +0000</pubDate>
-      
-      <guid>https://tanmaychimurkar.github.io/tags/tmux/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Unix tools</title>
-      <link>https://tanmaychimurkar.github.io/tags/unix-tools/</link>
-      <pubDate>Wed, 16 Nov 2022 10:26:41 +0000</pubDate>
-      
-      <guid>https://tanmaychimurkar.github.io/tags/unix-tools/</guid>
       <description></description>
     </item>
     

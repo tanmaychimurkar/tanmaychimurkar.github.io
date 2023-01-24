@@ -9,7 +9,7 @@
       <link>https://tanmaychimurkar.github.io/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 17 Nov 2022 15:17:29 +0000</lastBuildDate><atom:link href="https://tanmaychimurkar.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 16 Dec 2022 16:32:59 +0000</lastBuildDate><atom:link href="https://tanmaychimurkar.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Configuration files</title>
       <link>https://tanmaychimurkar.github.io/posts/configurations/yaml_files/</link>
@@ -22,7 +22,7 @@
     <item>
       <title>Tmux-Ease your terminal workflow</title>
       <link>https://tanmaychimurkar.github.io/posts/tools/tmux/</link>
-      <pubDate>Wed, 16 Nov 2022 10:26:41 +0000</pubDate>
+      <pubDate>Fri, 16 Dec 2022 16:32:59 +0000</pubDate>
       
       <guid>https://tanmaychimurkar.github.io/posts/tools/tmux/</guid>
       <description>This post goes over what is Tmux, and why should we use it if we are working with a terminal for quite a while</description>
