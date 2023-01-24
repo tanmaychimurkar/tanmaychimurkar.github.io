@@ -111,7 +111,7 @@ This can be used as a good starting point for your `tmux.conf` file.
 
 # Congratulations
 
-You are now a pro terminal user who uses tmux to set up their workflow. Hopefully, you should soon see a boost in your productivity, and the will also fall in love with your terminal :)
+You are now a pro terminal user who uses tmux to set up their workflow. Hopefully, you should soon see a boost in your productivity, and will also fall in love with your terminal :)
 
 Until next time!!
 
