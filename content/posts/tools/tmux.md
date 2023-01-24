@@ -1,6 +1,6 @@
 ---
 title: "Tmux-Ease your terminal workflow"
-date: 2022-11-16T10:26:41
+date: 2022-12-16T16:32:59
 description: "This post goes over what is Tmux, and why should we use it if we are working with a terminal for quite a while"
 tags: ["Unix tools", "Ease of access", "tmux"]
 categories: ["Unix tools"]
