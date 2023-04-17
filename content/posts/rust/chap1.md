@@ -8,9 +8,9 @@ author: "Tanmay"
 showToc: true
 TocOpen: true
 cover:
-image: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Rustacean-orig-noshadow.svg/220px-Rustacean-orig-noshadow.svg.png"
-alt: Rust Crab
-caption: "The Rust crab with its arms folded"
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Rustacean-orig-noshadow.svg/220px-Rustacean-orig-noshadow.svg.png"
+    alt: Rust Crab
+    caption: "The Rust crab with its arms folded"
 ShowBreadCrumbs: true
 ---
 
