@@ -9,7 +9,34 @@
       <link>https://tanmaychimurkar.github.io/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Fri, 16 Dec 2022 16:32:59 +0000</lastBuildDate><atom:link href="https://tanmaychimurkar.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 17 Apr 2023 11:41:15 +0000</lastBuildDate><atom:link href="https://tanmaychimurkar.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>bare metal</title>
+      <link>https://tanmaychimurkar.github.io/tags/bare-metal/</link>
+      <pubDate>Mon, 17 Apr 2023 11:41:15 +0000</pubDate>
+      
+      <guid>https://tanmaychimurkar.github.io/tags/bare-metal/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>embedded</title>
+      <link>https://tanmaychimurkar.github.io/tags/embedded/</link>
+      <pubDate>Mon, 17 Apr 2023 11:41:15 +0000</pubDate>
+      
+      <guid>https://tanmaychimurkar.github.io/tags/embedded/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Rust</title>
+      <link>https://tanmaychimurkar.github.io/tags/rust/</link>
+      <pubDate>Mon, 17 Apr 2023 11:41:15 +0000</pubDate>
+      
+      <guid>https://tanmaychimurkar.github.io/tags/rust/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>Ease of access</title>
       <link>https://tanmaychimurkar.github.io/tags/ease-of-access/</link>
