@@ -77,28 +77,28 @@ must implement. We will learn more about traits in a later chapter.
 
 ### Breakdown of the above code
 
-The `main` function is the entry point of the program. 
+- The `main` function is the entry point of the program. 
 
-The `println!` macro is used to print the string to the standard output. 
+- The `println!` macro is used to print the string to the standard output. 
 The `println!` macro is similar to the `printf` function in C or the `print`
 function in Python. The `println!` macro is a macro because it is prefixed with an exclamation mark. 
 We will learn more about macros in a later chapter.
 
-The `let` keyword is used to create a new variable. 
+- The `let` keyword is used to create a new variable. 
 
-The `mut` keyword is used to make the variable mutable. 
+- The `mut` keyword is used to make the variable mutable. 
 
-The `String::new` function is used to create a new empty string. The `String` type is a
+- The `String::new` function is used to create a new empty string. The `String` type is a
 string type provided by the standard library. The `String` type is a growable, UTF-8 encoded string.
 
-However, we still need a way to read the input from the user. The `read_line` method takes the input
+- However, we still need a way to read the input from the user. The `read_line` method takes the input
 from the user and stores it in the `guess` variable. The `read_line` method takes the input as a
 mutable reference. 
 
-The `&` symbol is used to create a reference. The `&mut` symbol is used to create
+- The `&` symbol is used to create a reference. The `&mut` symbol is used to create
 a mutable reference. 
 
-The `read_line` method returns a `Result` type. The `Result` type is an `enum`
+- The `read_line` method returns a `Result` type. The `Result` type is an `enum`
 which has two variants: `Ok` and `Err`. The `Ok` variant indicates that the operation was successful.
 The `Err` variant indicates that the operation failed. The `expect` method is used to handle the
 `Err` variant. The `expect` method takes a string as an argument. If the `Result` type is `Ok`, the
@@ -137,10 +137,13 @@ We can run the code using the following command:
 cargo run
 ```
 
-*`Key takeaway`*: `cargo run` will build and run the code, while `cargo build` will only build an executable 
-in the `target/debug` directory. `cargo run` is useful when we are developing the code. `cargo run`
-will compile the code and run the executable every time we make a change to the code. `cargo build`
-is useful when we are deploying the code. `cargo build` will compile the code and create an executable.
+*`Key takeaways`*: 
+- `cargo run` will build and run the code, while `cargo build` will only build an executable 
+in the `target/debug` directory. 
+- `cargo run` is useful when we are developing the code. `cargo run`
+will compile the code and run the executable every time we make a change to the code. 
+- `cargo build` is useful when we are deploying the code. `cargo build` will compile the code and 
+create an executable.
 
 Once run, the code will print the following output:
 
