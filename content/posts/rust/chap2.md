@@ -1,6 +1,6 @@
 ---
 title: "Rust Documentation: Chapter 2"
-date: 2023-04-19T10:14:11
+date: 2023-04-18T10:14:11
 description: "This post gives a breakdown of the key takeaways from Chapter 2 of the Rust Documentation"
 tags: ["Rust", "bare metal", "embedded"]
 categories: ["Rust"]
@@ -40,7 +40,7 @@ guessing_game
 
 The `Cargo.toml` file contains the metadata of the project. The `src` directory contains the source 
 code of the project. The `main.rs` file contains the main function of the project. As we saw 
-in the [previous]({{< ref "chap1.md" >}} "Rust Chapter 1") chapter, the `Cargo` package
+in the [previous]({{< ref "chap1.md#cargo-" >}} "Rust Chapter 1") chapter, the `Cargo` package
 manager uses the `main.rs` file as the entry point of the project. The `Cargo` package manager uses
 the `Cargo.toml` file to manage the dependencies of the project.
 
