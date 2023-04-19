@@ -1,6 +1,6 @@
 ---
 title: "Rust Documentation: Chapter 2"
-date: 2023-04-17T11:41:15
+date: 2023-04-19T10:14:11
 description: "This post gives a breakdown of the key takeaways from Chapter 2 of the Rust Documentation"
 tags: ["Rust", "bare metal", "embedded"]
 categories: ["Rust"]
