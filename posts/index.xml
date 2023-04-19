@@ -29,15 +29,6 @@
     </item>
     
     <item>
-      <title>Rust Documentation: Chapter 2</title>
-      <link>https://tanmaychimurkar.github.io/posts/rust/chap2/</link>
-      <pubDate>Mon, 17 Apr 2023 11:41:15 +0000</pubDate>
-      
-      <guid>https://tanmaychimurkar.github.io/posts/rust/chap2/</guid>
-      <description>This post gives a breakdown of the key takeaways from Chapter 2 of the Rust Documentation</description>
-    </item>
-    
-    <item>
       <title>Tmux-Ease your terminal workflow</title>
       <link>https://tanmaychimurkar.github.io/posts/tools/tmux/</link>
       <pubDate>Fri, 16 Dec 2022 16:32:59 +0000</pubDate>
