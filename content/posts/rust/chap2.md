@@ -71,3 +71,8 @@ The `use` keyword is used to import the `io` module from the standard library. T
 contains the `stdin` function which is used to read the input from the user. The `stdin` function
 returns an instance of the `Stdin` type. The `Stdin` type implements the `Read` trait. The `Read`
 trait defines the `read_line` method which is used to read a line from the `Stdin` type.
+
+`NOTE`: Traits are similar to interfaces in other languages. They define the methods that a type
+must implement. We will learn more about traits in a later chapter.
+
+
