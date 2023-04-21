@@ -202,35 +202,195 @@ the dependencies again. This is useful when we are deploying the code, since we 
 dependencies will not change when we deploy the code, and we will deploy the code with the same 
 dependencies that we were using while developing the code.
 
-#### Using the `rand` crate
+#### Generating Random Number for our game
 
-Now that we have added the `rand` crate to the `Cargo.toml` file, we can use the `rand` crate in our
-code. To use the `rand` crate, we need to add the following line to the `main.rs` file:
+Now that we have the `rand` crate, we can use it to generate a random number. We can use the `gen_range`
+method of the `rand` crate to generate a random number. The `gen_range` method takes two arguments:
+the lower bound and the upper bound. The `gen_range` method will generate a random number between
+the lower bound and the upper bound.
 
 ```rust
+use std::io;
 use rand::Rng;
+
+fn main() {
+    println!("Guess the number!");
+
+    let secret_number = rand::thread_rng().gen_range(1..=101);
+
+    println!("The secret number is: {}", secret_number);
+
+    println!("Please input your guess.");
+
+    let mut guess = String::new();
+
+    io::stdin()
+        .read_line(&mut guess)
+        .expect("Failed to read line");
+
+    println!("You guessed: {}", guess);
+}
 ```
 
-The `use` keyword is used to bring a `crate` or a module into the scope of the current module. The
-`Rng` trait is a trait that provides random number generation functionality.
+If you run the code now, you will see that the code will generate a random number between 1 and 101, and
+will print it to the console. 
 
-The `Rng` trait has a method called `gen_range` which takes two arguments: the lower bound and the
-upper bound. The `gen_range` method generates a random number between the lower bound and the upper
-bound. The `gen_range` method is defined as follows:
+```bash
 
-```rust
-pub fn gen_range<R: Rng + ?Sized>(&self, low: T, high: T) -> T
+$ cargo run
+   Compiling guessing_game v0.1.0 (file:///projects/guessing_game)
+    Finished dev [unoptimized + debuginfo] target(s) in 1.02s
+     Running `target/debug/guessing_game`
+Guess the number!
+The secret number is: 42
+Please input your guess.
+5
+You guessed: 5
 ```
 
-The `gen_range` method is defined on the `Rng` trait. The `Rng` trait is defined as follows:
+Now we see that a random number is being generated. However, we still need to compare the user input
+with the random number. We will do this in the next section.
+
+#### Comparing the user input with the random number
+
+We can compare the user input with the random number using the `cmp` method. The `cmp` method takes
+a reference to the value that we want to compare with. The `cmp` method returns an `Ordering` type.
+The `Ordering` type is an `enum` that can have three values: `Less`, `Greater`, and `Equal`. The
+`cmp` method compares the value that we are calling the method on with the value that we pass as an
+argument to the `cmp` method. If the value that we are calling the method on is less than the value
+that we pass as an argument to the `cmp` method, the `cmp` method will return the `Less` variant of
+the `Ordering` type. If the value that we are calling the method on is greater than the value that
+we pass as an argument to the `cmp` method, the `cmp` method will return the `Greater` variant of
+the `Ordering` type. If the value that we are calling the method on is equal to the value that we
+pass as an argument to the `cmp` method, the `cmp` method will return the `Equal` variant of the
+`Ordering` type.
+
+We can use the `match` expression to handle the `Ordering` type returned by the `cmp` method. The
+`match` expression is similar to the `switch` statement in other languages. The `match` expression
+takes a value as an argument and compares the value with the patterns that we specify in the `match`
+expression. If the value matches the pattern, the code that is associated with the pattern will be
+executed. If the value does not match any of the patterns, the `match` expression will throw an error.
 
 ```rust
-pub trait Rng: RngCore {
-    fn gen_range<T: SampleRange>(&mut self, low: T, high: T) -> T {
-        low + self.gen::<T>() % (high - low)
+use std::io;
+use rand::Rng;
+
+fn main() {
+    println!("Guess the number!");
+
+    let secret_number = rand::thread_rng().gen_range(1..=101);
+
+    println!("The secret number is: {}", secret_number);
+
+    println!("Please input your guess.");
+
+    let mut guess = String::new();
+
+    io::stdin()
+        .read_line(&mut guess)
+        .expect("Failed to read line");
+
+    println!("You guessed: {}", guess);
+
+    match guess.cmp(&secret_number) {
+        Ordering::Less => println!("Too small!"),
+        Ordering::Greater => println!("Too big!"),
+        Ordering::Equal => println!("You win! You are the guessing game champion!"),
     }
 }
 ```
 
+If you run the code now, you will see that the code will not compile. The reason for this is that we
+are trying to compare a `String` type with an `i32` type. We can fix this by converting the `String`
+type to an `i32` type. We can do this by using the `trim` method to remove the newline character
+from the `String` type, and then using the `parse` method to convert the `String` type to an `i32`
+type.
 
+```rust
+use std::io;
+use rand::Rng;
+
+fn main() {
+    println!("Guess the number!");
+
+    let secret_number = rand::thread_rng().gen_range(1..=101);
+
+    println!("The secret number is: {}", secret_number);
+
+    println!("Please input your guess.");
+
+    let mut guess = String::new();
+
+    io::stdin()
+        .read_line(&mut guess)
+        .expect("Failed to read line");
+
+    let guess: i32 = guess.trim().parse().expect("Please type a number!");
+
+    println!("You guessed: {}", guess);
+
+    match guess.cmp(&secret_number) {
+        Ordering::Less => println!("Too small!"),
+        Ordering::Greater => println!("Too big!"),
+        Ordering::Equal => println!("You win! You are the guessing game champion!"),
+    }
+}
+```
+
+If you run the code now, you will see that the code will compile and run. However, if you enter a
+non-numeric value, the code will panic. We can fix this by using the `match` expression to handle
+the `Result` type returned by the `parse` method. The `parse` method returns a `Result` type. The
+`Result` type is an `enum` that can have two values: `Ok` and `Err`. The `Ok` variant of the `Result`
+type means that the operation was successful, and the `Err` variant of the `Result` type means that
+the operation failed. The `parse` method will return the `Ok` variant of the `Result` type if the
+conversion was successful, and will return the `Err` variant of the `Result` type if the conversion
+failed. We can use the `match` expression to handle the `Result` type returned by the `parse` method.
+If the `parse` method returns the `Ok` variant of the `Result` type, we will assign the value that
+is inside the `Ok` variant to the `guess` variable. If the `parse` method returns the `Err` variant
+of the `Result` type, we will print the error message that is inside the `Err` variant to the console.
+
+```rust
+use std::io;
+use rand::Rng;
+
+fn main() {
+    println!("Guess the number!");
+
+    let secret_number = rand::thread_rng().gen_range(1..=101);
+
+    println!("The secret number is: {}", secret_number);
+
+    println!("Please input your guess.");
+
+    let mut guess = String::new();
+
+    io::stdin()
+        .read_line(&mut guess)
+        .expect("Failed to read line");
+
+    let guess: i32 = match guess.trim().parse() {
+        Ok(num) => num,
+        Err(_) => {
+            println!("This is not expected. Please enter an integer");
+            continue;
+        },
+    };
+
+    println!("You guessed: {}", guess);
+
+    match guess.cmp(&secret_number) {
+        Ordering::Less => println!("Too small!"),
+        Ordering::Greater => println!("Too big!"),
+        Ordering::Equal => println!("You win! You are the guessing game champion!"),
+    }
+}
+```
+
+If you run the code now, you will see that the code will compile and run. However, if you enter a
+non-numeric value, the code will not panic. Instead, the code will print the error message that we
+specified in the `Err` variant of the `Result` type. We can also use the `expect` method to handle
+the `Result` type returned by the `parse` method. The `expect` method will print the error message
+that we specify if the `parse` method returns the `Err` variant of the `Result` type. If the `parse`
+method returns the `Ok` variant of the `Result` type, the `expect` method will return the value that
+is inside the `Ok` variant.
 
