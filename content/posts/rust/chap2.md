@@ -428,13 +428,13 @@ fn main() {
 
 If you run the code now, you will see that the code will compile and run. However, if you enter a
 non-numeric value, the code will not panic. Instead, the code will print the error message that we
-specified in the `Err` variant of the `Result` type. We can also use the `expect` method to handle
-the `Result` type returned by the `parse` method. The `expect` method will print the error message
-that we specify if the `parse` method returns the `Err` variant of the `Result` type. If the `parse`
-method returns the `Ok` variant of the `Result` type, the `expect` method will return the value that
-is inside the `Ok` variant.
+specified in the `Err` variant of the `Result` type. We handled the panic using the `Err` variant of
+the `Result` type.
 
 #### Looping until correct number is guessed
+
+We can use `loop` to keep the program running until the correct number is guessed. This can be done as
+follows:
 
 ```rust
 use std::io;
@@ -477,6 +477,8 @@ fn main() {
     }
 }
 ```
+
+*Points to remember*:
 
 We just use `loop` keyword to create an infinite loop. We can use `break` keyword to break out of
 the loop. We can also use `continue` keyword to skip the rest of the loop and start the next
