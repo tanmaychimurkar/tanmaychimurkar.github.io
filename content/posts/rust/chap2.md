@@ -16,7 +16,7 @@ ShowBreadCrumbs: true
 
 ## Programming a Guessing Game 🎲
 
-In the [previous]({{< ref "chap1.md" >}} "Rust Chapter 1"), we learned about the basics of Rust.
+In the [previous chapter]({{< ref "chap1.md" >}} "Rust Chapter 1"), we learned about the basics of Rust.
 In this chapter, we will learn about the basics of Rust by building a simple guessing game.
 
 ### Setting up the project
