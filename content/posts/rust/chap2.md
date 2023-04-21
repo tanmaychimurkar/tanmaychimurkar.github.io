@@ -202,3 +202,35 @@ the dependencies again. This is useful when we are deploying the code, since we 
 dependencies will not change when we deploy the code, and we will deploy the code with the same 
 dependencies that we were using while developing the code.
 
+#### Using the `rand` crate
+
+Now that we have added the `rand` crate to the `Cargo.toml` file, we can use the `rand` crate in our
+code. To use the `rand` crate, we need to add the following line to the `main.rs` file:
+
+```rust
+use rand::Rng;
+```
+
+The `use` keyword is used to bring a `crate` or a module into the scope of the current module. The
+`Rng` trait is a trait that provides random number generation functionality.
+
+The `Rng` trait has a method called `gen_range` which takes two arguments: the lower bound and the
+upper bound. The `gen_range` method generates a random number between the lower bound and the upper
+bound. The `gen_range` method is defined as follows:
+
+```rust
+pub fn gen_range<R: Rng + ?Sized>(&self, low: T, high: T) -> T
+```
+
+The `gen_range` method is defined on the `Rng` trait. The `Rng` trait is defined as follows:
+
+```rust
+pub trait Rng: RngCore {
+    fn gen_range<T: SampleRange>(&mut self, low: T, high: T) -> T {
+        low + self.gen::<T>() % (high - low)
+    }
+}
+```
+
+
+
