@@ -44,28 +44,54 @@ in the [previous]({{< ref "chap1.md#cargo-" >}} "Rust Chapter 1") chapter, the `
 manager uses the `main.rs` file as the entry point of the project. The `Cargo` package manager uses
 the `Cargo.toml` file to manage the dependencies of the project.
 
-### Writing the code
+### Guessing game code
 
-Let's write the code for the guessing game. We will start by adding the following code to the
-`main.rs` file:
+The full code for the guessing game, which is in the `main.rs` file, looks as follows:
 
 ```rust
 use std::io;
+use rand::Rng;
 
 fn main() {
     println!("Guess the number!");
 
-    println!("Please input your guess.");
+    let secret_number = rand::thread_rng().gen_range(1..=101);
 
-    let mut guess = String::new();
+    loop {
+        println!("Please input your guess.");
 
-    io::stdin()
-        .read_line(&mut guess)
-        .expect("Failed to read line");
+        let mut guess = String::new();
 
-    println!("You guessed: {}", guess);
+        io::stdin()
+            .read_line(&mut guess)
+            .expect("Failed to read line");
+
+        let guess: i32 = match guess.trim().parse() {
+            Ok(num) => num,
+            Err(_) => {
+                println!("This is not expected. Please enter an integer");
+                continue;
+            },
+        };
+
+        println!("You guessed: {}", guess);
+
+        match guess.cmp(&secret_number) {
+            Ordering::Less => println!("Too small!"),
+            Ordering::Greater => println!("Too big!"),
+            Ordering::Equal => {
+                println!("You win! You are the guessing game champion!");
+                break;
+            },
+        }
+    }
 }
 ```
+
+Much of the code looks like mumbo jumbo for now, but we will break it down in pieces.
+
+
+### Breakdown of the above code
 
 The `use` keyword is used to import the `io` module from the standard library. The `io` module
 contains the `stdin` function which is used to read the input from the user. The `stdin` function
@@ -75,7 +101,7 @@ trait defines the `read_line` method which is used to read a line from the `Stdi
 `NOTE`: Traits are similar to interfaces in other languages. They define the methods that a type
 must implement. We will learn more about traits in a later chapter.
 
-### Breakdown of the above code
+*Points to remember:*
 
 - The `main` function is the entry point of the program. 
 
@@ -169,7 +195,6 @@ With `cargo`, we have the option to get `crates`. `Crates` are packages of Rust 
 use in our project. We can get a `crate` by adding the `crate` name and the version number to the
 `Cargo.toml` file. The `Cargo` package manager will download the `crate` and add it to the `Cargo.lock`
 
-
 For our case, we need to add the `rand` crate to the `Cargo.toml` file. The `rand` crate is a
 crate that provides random number generation functionality. 
 To add the `rand` crate to the `Cargo.toml` file, we need to add the following line to the `Cargo.toml` file:
@@ -253,23 +278,28 @@ with the random number. We will do this in the next section.
 
 #### Comparing the user input with the random number
 
-We can compare the user input with the random number using the `cmp` method. The `cmp` method takes
-a reference to the value that we want to compare with. The `cmp` method returns an `Ordering` type.
-The `Ordering` type is an `enum` that can have three values: `Less`, `Greater`, and `Equal`. The
+We can compare the user input with the random number using the `cmp` method. 
+
+*Points to remeber*:
+
+1) The `cmp` method takes a reference to the value that we want to compare with. 
+2) The `cmp` method returns an `Ordering` type. 
+3) The `Ordering` type is an `enum` that can have three values: `Less`, `Greater`, and `Equal`. The
 `cmp` method compares the value that we are calling the method on with the value that we pass as an
-argument to the `cmp` method. If the value that we are calling the method on is less than the value
+argument to the `cmp` method. 
+4) If the value that we are calling the method on is less than the value
 that we pass as an argument to the `cmp` method, the `cmp` method will return the `Less` variant of
 the `Ordering` type. If the value that we are calling the method on is greater than the value that
 we pass as an argument to the `cmp` method, the `cmp` method will return the `Greater` variant of
 the `Ordering` type. If the value that we are calling the method on is equal to the value that we
 pass as an argument to the `cmp` method, the `cmp` method will return the `Equal` variant of the
-`Ordering` type.
-
-We can use the `match` expression to handle the `Ordering` type returned by the `cmp` method. The
-`match` expression is similar to the `switch` statement in other languages. The `match` expression
-takes a value as an argument and compares the value with the patterns that we specify in the `match`
-expression. If the value matches the pattern, the code that is associated with the pattern will be
-executed. If the value does not match any of the patterns, the `match` expression will throw an error.
+`Ordering` type. 
+5) We can use the `match` expression to handle the `Ordering` type returned by the `cmp` method.
+6) The `match` expression is similar to the `switch` statement in other languages. 
+7) The `match` expression takes a value as an argument and compares the value with the patterns
+that we specify in the `match` expression. If the value matches the pattern, the code that is 
+associated with the pattern will be executed. If the value does not match any of the 
+patterns, the `match` expression will throw an error.
 
 ```rust
 use std::io;
@@ -300,9 +330,11 @@ fn main() {
 }
 ```
 
-If you run the code now, you will see that the code will not compile. The reason for this is that we
-are trying to compare a `String` type with an `i32` type. We can fix this by converting the `String`
-type to an `i32` type. We can do this by using the `trim` method to remove the newline character
+If you run the code now, you will see that the code will not compile. 
+
+*Points to remember*:
+The reason for this is that we are trying to compare a `String` type with an `i32` type. We can 
+fix this by converting the `String` type to an `i32` type. We can do this by using the `trim` method to remove the newline character
 from the `String` type, and then using the `parse` method to convert the `String` type to an `i32`
 type.
 
@@ -337,17 +369,25 @@ fn main() {
 }
 ```
 
-If you run the code now, you will see that the code will compile and run. However, if you enter a
-non-numeric value, the code will panic. We can fix this by using the `match` expression to handle
-the `Result` type returned by the `parse` method. The `parse` method returns a `Result` type. The
-`Result` type is an `enum` that can have two values: `Ok` and `Err`. The `Ok` variant of the `Result`
-type means that the operation was successful, and the `Err` variant of the `Result` type means that
-the operation failed. The `parse` method will return the `Ok` variant of the `Result` type if the
+If you run the code now, you will see that the code `will` compile and run. 
+
+However, we can still type an alphabet and get away with it. We can fix the input to be only numbers
+by using the `Result` type returned by the `parse` method. The `Result` is of type `enum` and can have
+two values: `Ok` and `Err`. 
+
+*Points to remember*:
+
+1) The `Ok` variant of the `Result` type means that the operation was successful 
+2) The `Err` variant of the `Result` type means that the operation failed. 
+3) The `parse` method will return the `Ok` variant of the `Result` type if the
 conversion was successful, and will return the `Err` variant of the `Result` type if the conversion
-failed. We can use the `match` expression to handle the `Result` type returned by the `parse` method.
+failed.
+4) We can use the `match` expression to handle the `Result` type returned by the `parse` method.
 If the `parse` method returns the `Ok` variant of the `Result` type, we will assign the value that
 is inside the `Ok` variant to the `guess` variable. If the `parse` method returns the `Err` variant
 of the `Result` type, we will print the error message that is inside the `Err` variant to the console.
+
+With these points, we can change the code as follows:
 
 ```rust
 use std::io;
@@ -394,3 +434,97 @@ that we specify if the `parse` method returns the `Err` variant of the `Result` 
 method returns the `Ok` variant of the `Result` type, the `expect` method will return the value that
 is inside the `Ok` variant.
 
+#### Looping until correct number is guessed
+
+```rust
+use std::io;
+use rand::Rng;
+
+fn main() {
+    println!("Guess the number!");
+
+    let secret_number = rand::thread_rng().gen_range(1..=101);
+
+    println!("The secret number is: {}", secret_number);
+
+    loop {
+        println!("Please input your guess.");
+
+        let mut guess = String::new();
+
+        io::stdin()
+            .read_line(&mut guess)
+            .expect("Failed to read line");
+
+        let guess: i32 = match guess.trim().parse() {
+            Ok(num) => num,
+            Err(_) => {
+                println!("This is not expected. Please enter an integer");
+                continue;
+            },
+        };
+
+        println!("You guessed: {}", guess);
+
+        match guess.cmp(&secret_number) {
+            Ordering::Less => println!("Too small!"),
+            Ordering::Greater => println!("Too big!"),
+            Ordering::Equal => {
+                println!("You win! You are the guessing game champion!");
+                break;
+            },
+        }
+    }
+}
+```
+
+We just use `loop` keyword to create an infinite loop. We can use `break` keyword to break out of
+the loop. We can also use `continue` keyword to skip the rest of the loop and start the next
+iteration of the loop. 
+
+#### Removing the secret number message
+
+We just have to remove the secret number generation part from the code. Once we remove the secret
+number generation part from the code, we will not be able to print the secret number to the console.
+
+The final script should then look like this:
+
+```rust
+use std::io;
+use rand::Rng;
+
+fn main() {
+    println!("Guess the number!");
+
+    let secret_number = rand::thread_rng().gen_range(1..=101);
+
+    loop {
+        println!("Please input your guess.");
+
+        let mut guess = String::new();
+
+        io::stdin()
+            .read_line(&mut guess)
+            .expect("Failed to read line");
+
+        let guess: i32 = match guess.trim().parse() {
+            Ok(num) => num,
+            Err(_) => {
+                println!("This is not expected. Please enter an integer");
+                continue;
+            },
+        };
+
+        println!("You guessed: {}", guess);
+
+        match guess.cmp(&secret_number) {
+            Ordering::Less => println!("Too small!"),
+            Ordering::Greater => println!("Too big!"),
+            Ordering::Equal => {
+                println!("You win! You are the guessing game champion!");
+                break;
+            },
+        }
+    }
+}
+```
