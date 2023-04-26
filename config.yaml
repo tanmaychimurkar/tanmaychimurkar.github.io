@@ -46,6 +46,7 @@ outputs:
 
 params:
     env: production
+    googleAnalytics: "UA-XXXXX-X"
     description: "Theme PaperMod - https://github.com/adityatelange/hugo-PaperMod"
     author: Me
     # author: ["Me", "You"] # multiple authors
@@ -96,6 +97,10 @@ params:
         favicon32x32: "/favicon-32x32.png"
         apple_touch_icon: "/apple-touch-icon.png"
         safari_pinned_tab: "/apple-touch-icon.png"
+
+    analytics:
+        google:
+            SiteVerificationTag: "TKI2D0Wu7RG5sp0Kc0eB1WxxMdTjGdf4iGzsl7OE4jU"
 
 markup:
     goldmark:
