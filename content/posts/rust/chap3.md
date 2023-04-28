@@ -1,6 +1,6 @@
 ---
 title: "Rust Documentation: Chapter 3"
-date: 2023-04-20T15:34:18
+date: 2023-04-26T15:34:18
 description: "This post gives a breakdown of the key takeaways from Chapter 3 of the Rust Documentation"
 tags: ["Rust", "bare metal", "embedded"]
 categories: ["Rust"]
@@ -53,7 +53,7 @@ error[E0384]: cannot assign twice to immutable variable `x`
   |     ^^^^^ cannot assign twice to immutable variable
 ```
 
-Even if the compiler does not like what we did, it does not hate us! We can see that the issue is 
+Even if the compiler does not like what we did, it does not hate us!(unlike the `C` compiler, wha whaaaat!!!!) We can see that the issue is 
 very nicely printed out for us.
 
 Similarly, we can reassign any other value to the variable `y` from the above example as follows:
@@ -67,3 +67,57 @@ fn main() {
 ```
 
 If you build and run the above code, you should see that the value of `y` is `7`.
+
+### Constants
+
+In rust, constants are always immutable by default. We define constants using the `const` keyword, 
+instead of the `let` keyword. Trying to make a constant defined with `const` mutable, as seen in below
+code, would result in the following error:
+
+```rust
+fn main() {
+    const mut MAX_POINTS: u32 = 100_000;
+    MAX_POINTS = 100_001;
+}
+```
+
+```bash
+error: const globals cannot be mutable
+ --> src/main.rs:4:11
+  |
+4 |     const mut MAX_POINTS: u32 = 100_000;
+  |     ----- ^^^ cannot be mutable
+  |     |
+  |     help: you might want to declare a static instead: `static`
+  ```
+
+So, in conclusion, we cannot make constants mutable in Rust.
+
+### Shadowing
+
+We can shadow a variable by using the same variable name as the previous variable. This is different from
+mutability. Let's see an example:
+
+```rust
+
+fn main() {
+    let x = 5;
+    let x = x + 1;
+    let x = x * 2;
+    println!("The value of x is {x}");
+}
+```
+
+Also, shadowing is different that using `mut` variables, since for mut variables, we can ignore the 
+`let` keyword, but for shadowing, we have to use the `let` keyword. Also, if we plan to change the 
+datatype of the variable we are shadowing, we need to explicitly mention the new datatype.
+
+
+*Key Points*
+
+- Variables are immutable by default in Rust
+- If we want immutable variables, we use the `mut` keyword after the `let` keyword
+- By strict nature, `const` variables, i.e., constants, are immutable in Rust
+- Shadowing is different that using a `mut` variable, since if we shadow a variable again, we need to use the
+  -`let` keyword again.
+- If we change the datatype of the variable we are shadowing, we need to explicitly mention the new datatype.
