@@ -121,3 +121,67 @@ datatype of the variable we are shadowing, we need to explicitly mention the new
 - Shadowing is different that using a `mut` variable, since if we shadow a variable again, we need to use the
   -`let` keyword again.
 - If we change the datatype of the variable we are shadowing, we need to explicitly mention the new datatype.
+
+
+##  Data Types
+
+In rust, every value has a `data type`. Data types are the typical data types that we see in other programming
+languages, and they are as follows: 
+
+- Scalar Types
+  - Integers
+  - Floating-Point Numbers
+  - Booleans
+  - Characters
+
+### Integer Types
+
+Integer types as signed and unsigned, i.e., can range from negative to positive values, and only positive values, 
+respectively. They are represented as either `i32` for signed integers, or `u32` for unsigned integers.
+Full reference can be found [here](https://doc.rust-lang.org/book/ch03-02-data-types.html#integer-types`).
+
+### Floating-Point Types
+
+There are only two floating point types in Rust, `f32` and `f64`. The default type is `f64`, since it is faster
+than `f32` on modern CPUs.
+
+`Important Note`: When performing mathematical operations, we need to be careful about the data types we are using.
+By default, mathematical operations in `rust` do not convert floating point numbers to return floats. For example,
+an operation `2/3` would return `0`, since both `2` and `3` are integers. To get the correct result, we need to
+explicitly convert one of the numbers to a float, as follows: `2.0/3` or `2/3.0` or `2.0/3.0`.
+
+### Boolean Type
+
+Boolean types in Rust are represented as `bool`, and can have two values, `true` or `false`.
+
+### Character Type
+
+Most primitive alphabetic type. Characters are always specified using single quotes, as follows: `let c = 'z'`.
+
+## Compound Types
+
+These data types are used to combine multiple values into a one type. There are only two compound types in Rust:
+`tuples` and `arrays`.
+
+### Tuples
+
+Can have multiple data types clubbed into one tuple. Type annotation is optional when creating a tuple, but useful.
+
+To get the values out from a tuple in `rust`, we can either unzip the tuple, or use `.` operator with the index. 
+
+### Arrays
+
+Arrays must have all elements from the same data type. Arrays in `rust` have a fixed size, so we cannot append
+to arrays, instead we append to `vectors`, which we will see in a later chapter. 
+
+Also, arrays are good when we want to store the data on `stack` rather than `heap`, since they always have
+a fixed size.
+
+In `rust`, arrays should be defined as follows:
+
+```rust
+let a: [i32; 5] = [1, 2, 3, 4, 5];
+```
+
+Elements from array in `rust` are accessed as they are in `Python`, via the `[index]` operator.
+If we try to access an invalid index, the compiler `panics` and we usually get a helpful error message.
