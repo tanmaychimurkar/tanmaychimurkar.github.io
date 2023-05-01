@@ -185,3 +185,158 @@ let a: [i32; 5] = [1, 2, 3, 4, 5];
 
 Elements from array in `rust` are accessed as they are in `Python`, via the `[index]` operator.
 If we try to access an invalid index, the compiler `panics` and we usually get a helpful error message.
+
+## Functions
+
+In `rust`, functions are defined with `fn` keyword, followed by the name of the function, and then the
+parameters. The return type of the function is specified after the `->` operator. If the function does
+not return anything, we can omit the return type. 
+
+In `rust`, the function signatures `must` have a data type. This is because the compiler needs to know
+the size of the return type at compile time. This can be seen in this example:
+
+```rust
+fn main() {
+    print_labeled_measurement(5, 'h');
+}
+
+fn print_labeled_measurement(value: i32, unit_label: char) {
+    println!("The measurement is: {value}{unit_label}");
+}
+```
+
+### Expressions and Statements
+
+In `rust`, expressions and statements are different.
+
+- Statements are instructions that perform some action and do not return a value.
+- Expressions evaluate to a resultant value.
+
+`let y = 6;` is a statement, as it is only assigning a value to the variable `y`.
+
+```rust
+{
+    let x = 3;
+    x + 1
+} // This is an expression, since it returns the value 'x + 1'
+```
+
+We can return early from a function using the `return` keyword in `rust`. However, even without the `return`
+keyword, the last expression in a function is returned implicitly. If we have a return type, its type is to 
+given in the function signature as follows:
+
+```rust
+fn five() -> i32 {
+    5
+}
+
+fn main() {
+    let x = five();
+
+    println!("The value of x is: {x}");
+}
+```
+
+## Control Flow
+
+Most common constructs are the `if`, `while`, and `for` loops. They are all expressions, as they typically
+return a value at the end of their execution.
+
+### If Expressions
+
+Only requirement is that the condition that is being checked must be a `bool` type. So, we cannot have a conditional
+block like this in `rust`:
+
+```rust
+fn main() {
+    let number = 3;
+
+    if number {
+        println!("number was three");
+    }
+}
+```
+
+The above code block would raise an `error` in `rust`, as the condition `if number` is not a `bool` type.
+
+### Using `if` in `let` statements
+
+In rust, we can use `if` in `let` statements as follows:
+
+```rust
+fn main() {
+    let condition = true;
+    let number = if condition { 5 } else { 6 };
+
+    println!("The value of number is: {number}");
+}
+```
+
+This is a valid assignment (statement) in rust, as we assign a value based on a condition. However, we need to
+make sure that the return value of the conditional is of the same data type, otherwise the compiler will throw
+an error. For example, this is not a valid expression using `if` blocks:
+
+```rust
+fn main() {
+    let condition = true;
+    let number = if condition { 5 } else { "six" };
+
+    println!("The value of number is: {number}");
+}
+```
+
+The above would throw an error, as one type is of integer and another is of string type.
+
+### Looping your code
+
+In rust, we can make loops using the `loop`, `while`, and `for` keywords.
+
+#### `loop` keyword
+
+Executes forever, until user stops the program manually. We can also use `break` keyword to break out of the loop.
+
+We can also assign `loop labels` in rust to know which loop is being executed. When breaking out of a loop,
+we can then use the `break` keyword with the `loop label` to stop execution. It is mandatory to have the 
+loop labels starting with the `'` character to be able to use them in `break` statements.
+
+```rust
+fn main() {
+    let mut count = 0;
+    'counting_up: loop {
+        println!("count = {count}");
+        let mut remaining = 10;
+
+        loop {
+            println!("remaining = {remaining}");
+            if remaining == 9 {
+                break;
+            }
+            if count == 2 {
+                break 'counting_up;
+            }
+            remaining -= 1;
+        }
+
+        count += 1;
+    }
+    println!("End count = {count}");
+}
+```
+
+#### `while` keyword
+
+The `while` keyword works just like the `if` keyword, wherein the code is executed until it reaches a `false` condition.
+
+#### `for` keyword
+
+The `for` keyword is used to iterate over a collection of items. For example, we can iterate over a range of numbers.
+
+`Important Note`: In `for` conditions, the range over which we an element to loop over is specified with the syntax
+`(start..end)`, where `start` is inclusive and `end` is exclusive. For example, `for n in (1..4)` will iterate over
+the numbers `1, 2, 3`.
+
+## Conclusion
+
+In this chapter, we learned about the basic data types in `rust`, and how to use them. We also learned about the
+`if` expressions, and how to use them in `let` statements. We also learned about the `loop`, `while`, and `for`
+keywords, and how to use them to iterate over a collection of items.
