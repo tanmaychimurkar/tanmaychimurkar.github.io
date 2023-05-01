@@ -9,7 +9,7 @@
       <link>https://tanmaychimurkar.github.io/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Wed, 26 Apr 2023 15:34:18 +0000</lastBuildDate><atom:link href="https://tanmaychimurkar.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 29 Apr 2023 11:23:17 +0000</lastBuildDate><atom:link href="https://tanmaychimurkar.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Configuration files</title>
       <link>https://tanmaychimurkar.github.io/posts/configurations/yaml_files/</link>
@@ -17,6 +17,15 @@
       
       <guid>https://tanmaychimurkar.github.io/posts/configurations/yaml_files/</guid>
       <description>This post goes over what `configuration` files are and where are they useful</description>
+    </item>
+    
+    <item>
+      <title>Rust Documentation: Chapter 4</title>
+      <link>https://tanmaychimurkar.github.io/posts/rust/chap4/</link>
+      <pubDate>Sat, 29 Apr 2023 11:23:17 +0000</pubDate>
+      
+      <guid>https://tanmaychimurkar.github.io/posts/rust/chap4/</guid>
+      <description>This post gives a breakdown of the key takeaways from Chapter 4 of the Rust Documentation</description>
     </item>
     
     <item>
