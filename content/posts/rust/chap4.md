@@ -1,7 +1,7 @@
 ---
-title: "Rust Documentation: Chapter 4"
+title: "Rust Documentation: Chapter 4 - Ownership"
 date: 2023-04-29T11:23:17
-description: "This post gives a breakdown of the key takeaways from Chapter 4 of the Rust Documentation"
+description: "This post gives a breakdown of the key takeaways from Chapter 4 - Ownership of the Rust Documentation"
 tags: ["Rust", "bare metal", "embedded"]
 categories: ["Rust"]
 author: "Tanmay"
@@ -115,3 +115,121 @@ In short, this is what happens
 
 We can see from the above image that there is not a new `copy` of the data that is created when we assign
 `s1` to `s2`. In short, `rust` does not create a deep copy when we assign one variable to another.
+
+#### `Double free` memory error
+
+Now that we have `s1` and `s2` pointing to the same location in memory, this can potentially cause problems.
+For example, when both variables go out of scope, they will both try to free the same memory. This is known
+as a `double free` error.
+
+To avoid such errors, `rust` considers that once we assign `s1` to `s2`, `s1` is no longer valid. This is
+known as a `move` in `rust`. This can be seen as a type of `shallow copy`, wherein s2 does not copy the data
+from s1, but instead, it takes `ownership` of the data that s1 was pointing to. `s1` was moved into `s2`.
+
+`Important Note`: `rust` does not create `deep copy` of a variable by default. To create a deep copy,
+we need to use the `clone` method.
+
+#### `Clone` method
+
+To make sure that a `deep copy` is created when we take `s1` and assign it to `s2`, we can use the `clone` method.
+This copies the data from the `stack` (which is the `pointer`, `length`, and `capacity`) as well as the data from
+the `heap` into the new variable `s2`. We can clone a variable as follows:
+
+```rust
+    let s1 = String::from("hello");
+    let s2 = s1.clone();
+```
+
+#### `Copy` trait
+
+By default, for variables for which the size is fixed at compile time, like integers, booleans, are stored
+on the `stack`. When these variables are assigned to new variables, instead of the `move` operation, a `copy`
+operation is performed. The `copy` operation copies the value of the original variable to the new variable, 
+while still keeping both variables valid. While this is a contradiction to the `move` method that `rust` uses,
+it is a design choice since it is easier to copy data from the `stack` than from the `heap`.
+
+By default, the following types implement the `Copy` trait:
+
+- All the integer types, such as `u32`.
+- The `boolean` type, `bool`.
+- The `floating point` types, such as `f64`.
+- The `character` type, `char`.
+- Tuples, if they only contain types that also implement `Copy`. For example, `(i32, i32)` implements `Copy`, 
+but `(i32, String)` does not.
+
+### Ownership and Functions
+
+When we pass a variable to a function, the `ownership` of the variable is either `moved` or `copied`
+to the function, based on the type of variable that the function uses. This can be seen in the below 
+example:
+
+```rust
+fn main() {
+    let string_variable = String::from("hello"); // 'string_variable' comes into scope
+    
+    show_string(string_variable); // 'string_variable' is moved into the function
+                                  // 'string_variable' is no longer valid
+    
+    let x=5; // 'x' comes into scope
+    
+    show_number(x); // 'x' is copied into the function instead of moved, and is still valid after the function call
+                    // 'x' is still valid after the function call
+    
+    
+    fn show_string(string_variable: String) { // 'string_variable' comes into scope
+        println!("{}", string_variable);
+    } // 'string_variable' goes out of scope and the memory is freed via 'drop'
+    
+    fn show_number(x: i32) { // 'x' comes into scope
+        println!("{}", x);
+    } // 'x' goes out of scope, but nothing special happens, since there is no 'drop' to be done
+}
+```
+
+### Ownership in `return` values and scopes
+
+Ownership works the same way for function return values as it does for variables. When a function returns a value,
+the ownership of the value is either moved or copied to the variable that is receiving the return value. This can
+be seen from this example:
+
+```rust
+fn main() {
+    let s1 = gives_ownership();         // gives_ownership moves its return
+                                        // value into s1
+
+    let s2 = String::from("hello");     // s2 comes into scope
+
+    let s3 = takes_and_gives_back(s2);  // s2 is moved into
+                                        // takes_and_gives_back, which also
+                                        // moves its return value into s3
+} // Here, s3 goes out of scope and is dropped. s2 was moved, so nothing
+  // happens. s1 goes out of scope and is dropped.
+
+fn gives_ownership() -> String {             // gives_ownership will move its
+                                             // return value into the function
+                                             // that calls it
+
+    let some_string = String::from("yours"); // some_string comes into scope
+
+    some_string                              // some_string is returned and
+                                             // moves out to the calling
+                                             // function
+}
+
+// This function takes a String and returns one
+fn takes_and_gives_back(a_string: String) -> String { // a_string comes into
+                                                      // scope
+
+    a_string  // a_string is returned and moves out to the calling function
+}
+```
+
+### Conclusions
+
+The ownership of a variable follows the same pattern every time: assigning a value to another variable
+moves it. When a variable that includes data on the heap goes out of scope, the value will be cleaned
+up by drop unless ownership of the data has been moved to another variable.
+
+`Drawbacks`: Functions that `move` ownership of variables can be cumbersome. For example, if we want to
+use a variable after it has been passed to a function, we cannot do so, since the variable is no longer
+valid. To overcome this, we can use `references`, which is explained in the [next chapter](chap5.md).
