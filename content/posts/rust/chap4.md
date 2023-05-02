@@ -170,7 +170,7 @@ fn main() {
     show_string(string_variable); // 'string_variable' is moved into the function
                                   // 'string_variable' is no longer valid
     
-    let x=5; // 'x' comes into scope
+    let x = 5; // 'x' comes into scope
     
     show_number(x); // 'x' is copied into the function instead of moved, and is still valid after the function call
                     // 'x' is still valid after the function call
