@@ -9,7 +9,16 @@
       <link>https://tanmaychimurkar.github.io/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Wed, 03 May 2023 10:12:10 +0000</lastBuildDate><atom:link href="https://tanmaychimurkar.github.io/tags/bare-metal/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 03 May 2023 15:42:18 +0000</lastBuildDate><atom:link href="https://tanmaychimurkar.github.io/tags/bare-metal/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Rust Documentation: Chapter 5</title>
+      <link>https://tanmaychimurkar.github.io/posts/rust/chap7/</link>
+      <pubDate>Wed, 03 May 2023 15:42:18 +0000</pubDate>
+      
+      <guid>https://tanmaychimurkar.github.io/posts/rust/chap7/</guid>
+      <description>This post gives a breakdown of the key takeaways from Chapter 5 of the Rust Documentation</description>
+    </item>
+    
     <item>
       <title>Rust Documentation: Chapter 4 - Slices</title>
       <link>https://tanmaychimurkar.github.io/posts/rust/chap6/</link>
