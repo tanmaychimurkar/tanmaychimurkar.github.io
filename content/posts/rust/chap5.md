@@ -86,11 +86,11 @@ only have to modify a few values in the new `struct`.
 Suppose we have a `user1` object from the `User` struct as follows:
 
 ```rust
-    let user1 = User {
-        active: true,
-        username: String::from("someusername123"),
-        email: String::from("someone@example.com"),
-        sign_in_count: 1,
+let user1 = User {
+    active: true,
+    username: String::from("someusername123"),
+    email: String::from("someone@example.com"),
+    sign_in_count: 1,
 };
 ```
 
@@ -98,7 +98,6 @@ Let's say we want to create another user that only has a different email, but th
 the same as that of `user1`. This can be done as follows:
 
 ```rust
-
 let user2 = User {
     email: String::from("user2email@example.com"),
     active: user1.active, // we can just get the value from user1 object
@@ -139,3 +138,55 @@ struct Point(i32, i32, i32);
 are two different tuples of type `Color` and `Point` respectively, even though they have the same number of values
 and the same types of values. A function that takes `Color` type as an argument cannot take a `Point` type
 as an argument, even though they look the same.
+
+## How and when to use Structs
+
+Using tuple can be useful in some scenarios where we want to link values to each other. For example,
+if we want to calculate the area of a rectangle, we could use a tuple as follows:
+
+```rust
+fn main() {
+    let rectangle = (10, 20); // tuple containing width and height
+    
+    compute_area(rectangle); // pass a tuple struct as an argument  
+    
+    fn compute_area(dims: (i32, i32)) -> i32 {
+        dims.0 * dims.1
+    }
+}
+```
+
+The above implementation uses a tuple struct `Rectangle`, and we pass the width and the height to it
+together as a tuple. But what if we wanted to plot the rectangle? We would then need to keep track
+of which index represents the `width` and `height`. That can get messy very fast.
+
+### Using `struct` instead
+
+Instead of passing a tuple, we can improve the readiblity of the code above by creating a struct `Rectangle`
+and assigning the width and height to it as follows:
+
+```rust
+fn main() {
+    struct Rectangle {
+        width: i32,
+        height: i32,
+    }
+
+    let rect = Rectangle {
+        width: 10,
+        height: 20
+    };
+
+    compute_area(&rect);
+
+    fn compute_area(rect: &Rectangle) {
+        let rect_area = rect.width * rect.height;
+
+        println!("The area of the rectangle is {rect_area}")
+    }
+}
+```
+
+We can see that the implementation that we have now is much easier to understand since the paremeters
+`width` and `height` are linked to the struct `Rectangle`.
+
