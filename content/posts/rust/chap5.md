@@ -189,3 +189,70 @@ fn main() {
 
 The above code will also compile, since the scope of the first mutable reference `r1` is finished before we create
 the second mutable reference `r2` by using `{}`.
+
+### Scope matters for mutable and immutable references!
+
+We can have multiple `immutable` references from a variable, since by nature, immutable references cannot 
+change any value, and can be looked at as a `read-only` reference. However, we cannot put an `mutable` reference
+before the `scope` of the `immutable` reference is finished, since the `mutable` reference can change the value
+of the variable, and thus, the `immutable` reference will not be valid anymore.
+
+This can be seen clearly from the below example:
+
+```rust
+fn main() {
+    let mut s = String::from("hello");
+
+    let r1 = &s; // no problem, since immutable reference used
+    let r2 = &s; // no problem, since immutable reference used
+    let r3 = &mut s; // BIG PROBLEM, mutable reference used before immutable references are finished
+
+    println!("{}, {}, and {}", r1, r2, r3); // will not compile
+}
+```
+
+Running the above code will raise the following error:
+
+```bash
+$ cargo run
+   Compiling ownership v0.1.0 (file:///projects/ownership)
+error[E0502]: cannot borrow `s` as mutable because it is also borrowed as immutable
+ --> src/main.rs:6:14
+  |
+4 |     let r1 = &s; // no problem
+  |              -- immutable borrow occurs here
+5 |     let r2 = &s; // no problem
+6 |     let r3 = &mut s; // BIG PROBLEM
+  |              ^^^^^^ mutable borrow occurs here
+7 |
+8 |     println!("{}, {}, and {}", r1, r2, r3);
+  |                                -- immutable borrow later used here
+
+For more information about this error, try `rustc --explain E0502`.
+error: could not compile `ownership` due to previous error
+```
+
+As we can see, the compiler will not allow us to create a mutable reference `r3` before the immutable references
+`r1` and `r2` are finished. This is because the mutable reference `r3` can change the value of the variable `s`,
+and thus, the immutable references `r1` and `r2` will not be valid anymore.
+
+However, the below code is valid and will compile:
+
+```rust
+fn main() {
+    let mut s = String::from("hello");
+
+    let r1 = &s; // no problem, read-only
+    let r2 = &s; // no problem, read-only
+    println!("{} and {}", r1, r2);
+    // variables r1 and r2 will not be used after this point
+
+    let r3 = &mut s; // no problem even if modified
+    println!("{}", r3);
+}
+```
+
+### Dangling references
+
+
+
