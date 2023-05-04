@@ -135,7 +135,7 @@ For more information about this error, try `rustc --explain E0502`.
 error: could not compile `ownership` due to previous error
 ```
 
-This is coherent with the `borrowing` references we saw in [Chapter 4 - References](chap5.md), where we saw
+This is coherent with the `borrowing` references we saw in [Chapter 4 - References](chap4-references.md), where we saw
 that if we have an immutable reference to something, we cannot also take a mutable reference.
 The `s.clear()` call will take a mutable reference to `s` to clear the string out, but this is not allowed
 in Rust. Neat!
@@ -166,4 +166,4 @@ All the concepts we have seen in Chapter 4, 5 and 6 are very important to unders
 borrowing, and memory safety in rust. We will see more of these concepts in the next chapter, where we will
 see how to use these concepts to create a program that is memory safe and does not have any memory leaks.
 
-Let us now look at the [next](chap7.md) chapter on `Struct` in Rust!
+Let us now look at the [next](chap5.md) chapter on `Struct` in Rust!

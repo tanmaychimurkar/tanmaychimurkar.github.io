@@ -232,4 +232,4 @@ up by drop unless ownership of the data has been moved to another variable.
 
 `Drawbacks`: Functions that `move` ownership of variables can be cumbersome. For example, if we want to
 use a variable after it has been passed to a function, we cannot do so, since the variable is no longer
-valid. To overcome this, we can use `references`, which is explained in the [next chapter](chap5.md).
+valid. To overcome this, we can use `references`, which is explained in the [next chapter](chap4-references.md).
