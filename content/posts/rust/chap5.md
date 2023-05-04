@@ -254,5 +254,49 @@ fn main() {
 
 ### Dangling references
 
+For languages with pointers, it is possible that a reference can point to a location that is given to another
+variable, or free some other variables memory by mistake. In `rust`, the compiler never lets us create `dangling
+references` to a variable. If we have a `reference` to some data, the compiler will make sure that the data
+does not go out of scope before the reference is out of scope. 
 
+Let's look at the below example to see how `rust` prevents us creating a dangling reference.
 
+```rust
+fn main() {
+    let some_reference = dangle(); // is a reference to a return value of a function
+    
+    fn dangle() -> &String {
+        let s = String::from("hello"); // s comes into scope at this line
+        
+        &s // create a reference to s and return it
+    } // the function finishes and s goes out of scope after this line, so the reference has nothing to
+      // point to
+}
+```
+
+Running the above, we get the following error:
+
+```bash
+error[E0106]: missing lifetime specifier
+ --> src/main.rs:6:20
+  |
+6 |     fn dangle() -> &String {
+  |                    ^ expected named lifetime parameter
+  |
+  = help: this function's return type contains a borrowed value, but there is no value for it to be borrowed from
+help: consider using the `'static` lifetime
+  |
+6 |     fn dangle() -> &'static String {
+  |                     +++++++
+```
+
+The error says that `this functions's return type contains a borrowed value, but there is no value for it to 
+be borrowed from`. This is because the variable `s` goes out of scope after the function `dangle` finishes, and
+thus, the reference `&s` has nothing to point to.
+
+Instead of returning a reference in the above function, we need to return `s` directly, and take ownership of
+the variable `s` in the function `dangle`:
+
+We can see how a plan comes together in `rust` with ownership and scope. 
+
+In the [next](chap6.md) chapter, we will look at a different kind of reference, called `slice`.
