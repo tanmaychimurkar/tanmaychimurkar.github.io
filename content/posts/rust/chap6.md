@@ -1,6 +1,6 @@
 ---
 title: "Rust Documentation: Chapter 4 - Slices"
-date: 2023-05-03T08:23:15
+date: 2023-05-03T10:12:10
 description: "This post gives a breakdown of the key takeaways from Chapter 4 - Slices the Rust Documentation"
 tags: ["Rust", "bare metal", "embedded"]
 categories: ["Rust"]
