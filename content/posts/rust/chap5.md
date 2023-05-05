@@ -336,3 +336,4 @@ default in rust, unlike in `Python` or other languages. When creating a `getter`
 set the name of the method equal to the name of the attribute.
 
 ### Methods with more Parameters
+
