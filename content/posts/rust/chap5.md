@@ -190,3 +190,111 @@ fn main() {
 We can see that the implementation that we have now is much easier to understand since the paremeters
 `width` and `height` are linked to the struct `Rectangle`.
 
+### Adding more functionality to structs
+
+So far, we have not tried to print a `struct` object in rust. Let's try the following to print a `struct`
+object:
+
+```rust
+fn main() {
+    struct Rectangle {
+        width: i32,
+        height: i32,
+    }
+    ;
+
+    let rect = Rectangle {
+        width: 10,
+        height: 20
+    };
+
+    println!("The rectangle is {rect}", rect = rect);
+}
+```
+
+When run, we should get the following error:
+
+```bash
+error[E0277]: `Rectangle` doesn't implement `std::fmt::Display`
+  --> src/main.rs:15:60
+   |
+15 |     println!("The area of the rectangle is {rect}", rect = rect);
+   |                                                            ^^^^ `Rectangle` cannot be formatted with the default formatter
+   |
+   = help: the trait `std::fmt::Display` is not implemented for `Rectangle`
+   = note: in format strings you may be able to use `{:?}` (or {:#?} for pretty-print) instead
+   = note: this error originates in the macro `$crate::format_args_nl` which comes from the expansion of the macro `println` (in Nightly builds, run with -Z macro-backtrace for more info)
+```
+
+Okay, compiler says let's try to print with `{:?}` instead. Let's try that:
+
+```rust
+use std::io;
+
+fn main() {
+    struct Rectangle {
+        width: i32,
+        height: i32,
+    }
+
+
+    let rect = Rectangle {
+        width: 10,
+        height: 20
+    };
+
+    println!("The rectangle is {:?}", rect);
+}
+```
+
+When run, now we get another error:
+
+```bash
+error[E0277]: `Rectangle` doesn't implement `Debug`
+  --> src/main.rs:15:51
+   |
+15 |     println!("The area of the rectangle is {:?}", rect);
+   |                                                   ^^^^ `Rectangle` cannot be formatted using `{:?}`
+   |
+   = help: the trait `Debug` is not implemented for `Rectangle`
+   = note: add `#[derive(Debug)]` to `Rectangle` or manually `impl Debug for Rectangle`
+   = note: this error originates in the macro `$crate::format_args_nl` which comes from the expansion of the macro `println` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider annotating `Rectangle` with `#[derive(Debug)]`
+   |
+4  |     #[derive(Debug)]
+   |
+```
+
+It error now says `Rectangle doesn't implement Debug`. 
+
+In rust, `Debug` is a trait that allows us to print the data of a variable such that it is easier for
+us to debug. The compiler also gives us help: `add '#[derive(Debug)]' to Rectangle or manually 'impl Debug 
+for Rectangle'`
+
+To resolve this issue, we can modify our code as following:
+
+```rust
+fn main() {
+    #[derive(Debug)] // we added the Debug trait to our struct
+    struct Rectangle {
+        width: i32,
+        height: i32,
+    }
+
+    let rect = Rectangle {
+        width: 10,
+        height: 20,
+    };
+
+    println!("The rectangle is {:?}", rect); // this should now work and show the data in the struct
+}
+```
+
+Run the above code and be in for a surprise!
+
+### Attaching a method to a `struct`
+
+The function to compute area is very specific to rectangles, and will not work for circles or triangles.
+In that, we should link the `compute_area` function to the `Rectangle` struct.
+This would be attaching a `method` to the struct.
+
