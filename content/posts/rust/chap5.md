@@ -296,5 +296,29 @@ Run the above code and be in for a surprise!
 
 The function to compute area is very specific to rectangles, and will not work for circles or triangles.
 In that, we should link the `compute_area` function to the `Rectangle` struct.
-This would be attaching a `method` to the struct.
+This would be attaching a `method` to the struct. Let's see how we can do that:
 
+```rust
+fn main() {
+    struct Rectangle {
+        // create struct Rectangle
+        width: i32,
+        height: i32,
+    }
+
+    let rect = Rectangle { // create an instance of Rectangle
+        width: 10,
+        height: 20,
+    };
+
+    impl Rectangle { // start implementation block
+        fn area(&self) -> i32 { // associate method to Rectangle struct via &self
+            self.width * self.height
+        }
+    }
+
+    println!("The area of the rectangle is {}", rect.area());
+}
+```
+
+We 
