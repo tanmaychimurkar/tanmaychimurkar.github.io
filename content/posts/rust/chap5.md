@@ -338,6 +338,4 @@ set the name of the method equal to the name of the attribute.
 ### Methods with more Parameters
 
 We can keep multiple parameters in the method, and use them as we would in any other function. We 
-can also link multiple methods to a struct. Let's see how we can do that:
-
-```rust
+can also link multiple methods to a struct. 
