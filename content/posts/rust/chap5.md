@@ -321,4 +321,18 @@ fn main() {
 }
 ```
 
-We 
+We see that using the keyword `impl` and then the name of the struct, we are able to create a method 
+for that struct. For the method that we create, we need to first argument to be the `self` keyword,
+so that the method knows that it is associated with the struct. We can then use the `self` keyword
+to access the values of the struct.
+
+`Important Note`: In rust, instead of using the `self` keyword directly, we use the `&self` keyword
+to avoid taking ownership of the struct. The documentation also mentions that it is very rare
+that a method takes ownership of the struct, and most of the time we just use the reference of the
+struct as input via `&self`.
+
+In rust, we can also set `getters` for attributes by creating methods for them. Getters are not set by
+default in rust, unlike in `Python` or other languages. When creating a `getter` method, we usually
+set the name of the method equal to the name of the attribute.
+
+### Methods with more Parameters
