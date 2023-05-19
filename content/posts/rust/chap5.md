@@ -265,7 +265,7 @@ help: consider annotating `Rectangle` with `#[derive(Debug)]`
    |
 ```
 
-It error now says `Rectangle doesn't implement Debug`. 
+The error now says `Rectangle doesn't implement Debug`. 
 
 In rust, `Debug` is a trait that allows us to print the data of a variable such that it is easier for
 us to debug. The compiler also gives us help: `add '#[derive(Debug)]' to Rectangle or manually 'impl Debug 
